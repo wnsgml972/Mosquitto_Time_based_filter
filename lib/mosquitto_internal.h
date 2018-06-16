@@ -281,20 +281,26 @@ struct mosquitto {
 #endif
 };
 
+//
+//struct publish_data {
+//	uint16_t mid;
+//	int retries;
+//	int retain;
+//	char *topic;
+//	int qos;
+//	uint32_t payloadlen;
+//	void *payload;
+//	struct mosquitto *context;
+//	struct publish_data *next;
+//	struct publish_data *prev;/////////////////=여기까지 내가 만든거
+//};
 
 struct publish_data {
-	uint16_t mid;
-	int retries;
-	int retain;
-	char *topic;
-	int qos;
-	uint32_t payloadlen;
-	void *payload;
-	struct mosquitto context;
+	struct mosquitto_client_msg *msg;
+	struct mosquitto *context;
 	struct publish_data *next;
 	struct publish_data *prev;/////////////////=여기까지 내가 만든거
 };
-
 //struct publish_data {
 //	struct mosquitto *context;
 //	struct publish_data *next;

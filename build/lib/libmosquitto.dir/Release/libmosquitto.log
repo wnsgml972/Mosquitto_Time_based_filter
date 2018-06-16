@@ -1,6 +1,7 @@
 ﻿  logging_mosq.c
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
   c:\temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.
+  memory_mosq.c
   messages_mosq.c
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
   c:\temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.
@@ -50,8 +51,6 @@ C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.1
   srv_mosq.c
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
   C:\Temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.
-  thread_mosq.c
-  tls_mosq.c
   util_mosq.c
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
   C:\Temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.

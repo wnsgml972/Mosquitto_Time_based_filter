@@ -31,6 +31,10 @@ static int max_queued = 2000;
 #ifdef WITH_SYS_TREE
 extern unsigned long g_msgs_dropped;
 #endif
+static struct publish_data *context_head = NULL;
+static struct publish_data *context_last = NULL;
+
+pthread_mutex_t time_based_mutex;// = PTHREAD_MUTEX_INITIALIZER;////Pthread Mutex 초기화
 
 int mqtt3_db_open(struct mqtt3_config *config, struct mosquitto_db *db)
 {
@@ -899,20 +903,46 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 			qos = tail->qos;
 			payloadlen = tail->store->payloadlen;
 			payload = tail->store->payload;
-			//printf("mqtt3_db_message_write : %d %d %s %s %d!!\n",qos, time_based_filter, topic, context->id, tail->state);
+			//printf("★mqtt3_db_message_write : %d %d %s %s %d!!\n",qos, time_based_filter, topic, context->id, tail->state);
 			switch (tail->state) {
 			case mosq_ms_publish_qos0:
+				//printf("★qos0\n");
+				
 				if (context->time_based_filter_timer > 0 && context->time_based_filter_timer <= 255) {////////타임베이스 필터를 사용하는 경우						
 																									  //if (!context->using_time_based_filter) {
 																									  //printf("[mosquitto_connect_timet_based_filter] : [memory]%d [id]%s [time_based]%d [time_based_timer]%d\n", context, context->id, context->time_based_filter, context->time_based_filter_timer);					
-					mosquitto_connect_timet_based_filter(*context, mid, topic, payloadlen, payload, qos, retain, retries);
+					struct mosquitto_client_msg *clientmsg;
+					clientmsg = _mosquitto_malloc(sizeof(*tail));
+					memcpy(clientmsg, tail, sizeof(*tail));
+					clientmsg->direction = tail->direction;
+					clientmsg->qos = tail->qos;
+					clientmsg->mid = tail->mid;
+					clientmsg->dup = tail->dup;
+					clientmsg->retain = tail->retain;
+					clientmsg->state = tail->state;
+					clientmsg->timestamp = tail->timestamp;
+					clientmsg->store = realloc(clientmsg->store, sizeof(struct mosquitto_msg_store));//토픽 재할당
+					memcpy(clientmsg->store, tail->store, sizeof(*tail->store));
+					clientmsg->store->topic = realloc(clientmsg->store->topic, strlen(topic));//토픽 재할당
+					clientmsg->store->payload = realloc(clientmsg->store->payload, payloadlen);//페이로드 재할당			
+					memcpy(clientmsg->store->topic, topic, strlen(topic) + 1);
+					memcpy(clientmsg->store->payload, payload, payloadlen);
+					
+
+					//printf("+++++%d %d %s\n", clientmsg->qos, clientmsg->store->payloadlen, clientmsg->store->topic);
+					pthread_mutex_lock(&time_based_mutex);
+					hilight_connect_timet_based_filter(context, clientmsg);
+					//mosquitto_connect_timet_based_filter(context, mid, topic, payloadlen, payload, qos, retain, retries);					
 					_message_remove(db, context, &tail, last);
+					pthread_mutex_unlock(&time_based_mutex);
 					//printf("[mosquitto_connect_timet_based_filter2] : [memory]%d [id]%s [time_based]%d [time_based_timer]%d\n", context, context->id, context->time_based_filter, context->time_based_filter_timer);
 					//}
 				}
 				else {///////////////////=추가 타임베이스 필터가 0인경우 바로 메세지 전송
 					////=printf("여기들어옴\n");
+					//printf("★★mqtt3_db_message_write : %d %d %s %s %d!!\n", qos, time_based_filter, topic, context->id, tail->state);
 					rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
+					context->time_based_filter_timer = context->time_based_filter;
 					if (!rc) {
 						_message_remove(db, context, &tail, last);
 					}
@@ -922,6 +952,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 				}
 				break;
 			case mosq_ms_publish_qos1:
+				//printf("★qos1\n");
 				rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
 				if (!rc) {
 					tail->timestamp = mosquitto_time();
@@ -936,6 +967,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 				break;
 
 			case mosq_ms_publish_qos2:
+				//printf("★qos2\n");
 				rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
 				if (!rc) {
 					tail->timestamp = mosquitto_time();
@@ -950,6 +982,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 				break;
 
 			case mosq_ms_send_pubrec:
+				//printf("★pubrec\n");
 				rc = _mosquitto_send_pubrec(context, mid);
 				if (!rc) {
 					tail->state = mosq_ms_wait_for_pubrel;
@@ -962,6 +995,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 				break;
 
 			case mosq_ms_resend_pubrel:
+				//printf("★pubrel\n");
 				rc = _mosquitto_send_pubrel(context, mid);
 				if (!rc) {
 					tail->state = mosq_ms_wait_for_pubcomp;
@@ -974,6 +1008,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 				break;
 
 			case mosq_ms_resend_pubcomp:
+				//printf("★pubcomp\n");
 				rc = _mosquitto_send_pubcomp(context, mid);
 				if (!rc) {
 					tail->state = mosq_ms_wait_for_pubrel;
@@ -1023,30 +1058,20 @@ void mqtt3_db_vacuum(void)
 
 
 ////////////////////////////////////////////=
-void mosquitto_set_publish_data(struct publish_data *pub_data, struct mosquitto mosq, uint16_t mid, uint32_t payloadlen, int qos, bool retain, bool dup) {
-	memcpy(&pub_data->context, &mosq, sizeof(mosq));
+void hilight_set_publish_data(struct publish_data *pub_data, struct mosquitto *mosq, struct mosquitto_client_msg *msg) {
+	//memcpy(&pub_data->context, &mosq, sizeof(mosq));
+	pub_data->context = mosq;
 
-	pub_data->mid = mid;
-
-	pub_data->retries = dup;
-
-	pub_data->retain = retain;
-
-	pub_data->qos = qos;
-
-	pub_data->payloadlen = payloadlen;
+	pub_data->msg = msg;
 
 	//printf("★[1]%s %d %d %d %d %d %d\n", pub_data->context.id, &pub_data->context, pub_data->mid, pub_data->payloadlen,
 	//pub_data->qos, pub_data->retain, pub_data->retries);
 }
 
 
-static struct publish_data *context_head = NULL;
-static struct publish_data *context_last = NULL;
 
-pthread_mutex_t time_based_mutex;// = PTHREAD_MUTEX_INITIALIZER;////Pthread Mutex 초기화
 
-void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup) {////값
+void hilight_connect_timet_based_filter(struct mosquitto *mosq, struct mosquitto_client_msg *msg) {////값
 
 	struct publish_data *pointer;
 	struct publish_data *pub_data;
@@ -1054,40 +1079,31 @@ void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, c
 	bool exist_context = 0;
 	//printf("★[mosquitto_connect_timet_based_filter] : [memory]%d [id]%s [time_based]%d [time_based_timer]%d\n", &context, context->id, context->time_based_filter, context->time_based_filter_timer);
 
-	pthread_mutex_lock(&time_based_mutex);
+	
 
 	//printf("★[mosq id] : %s %d연결\n", mosq.id, mosq.time_based_filter);
 	if (!context_head) {//맨 처음인경우(비어있는경우)
 		pub_data = _mosquitto_malloc(sizeof(struct publish_data));
-		mosquitto_set_publish_data(pub_data, mosq, mid, payloadlen, qos, retain, dup);////pub_data를 채워준다.
+		hilight_set_publish_data(pub_data, mosq, msg);////pub_data를 채워준다.
 
 																					  //여긴 처음인경우
-		pub_data->topic = _mosquitto_malloc(strlen(topic));
-		pub_data->payload = _mosquitto_malloc(payloadlen);
-		memcpy(pub_data->topic, topic, strlen(topic) + 1);
-		memcpy(pub_data->payload, payload, payloadlen);
+	
 		//printBinary(pub_data->payload, payloadlen);
 		context_head = pub_data;
 		context_head->next = NULL;
 		context_head->prev = NULL;
 		context_last = context_head;
-		printf("빔!\n");
+		//printf("빔!\n");
 	}
 	else {//Context가 존재하는 경우
 		pointer = context_head;
 		while (pointer) {
-			if (!strcmp(pointer->context.id, mosq.id)) {//같은 id를 가진 Context가 존재하면
+			if (!strcmp(pointer->context->id, mosq->id)) {//같은 id를 가진 Context가 존재하면
 														//printf("★pointer존재 : %s %s\n",pointer->context.id, mosq.id);
-				time_based_filter_timer_temp = pointer->context.time_based_filter_timer;
-				mosquitto_set_publish_data(pointer, mosq, mid, payloadlen, qos, retain, dup);////pub_data를 채워준다.
-
-				pointer->topic = realloc(pointer->topic, strlen(topic));//토픽 재할당
-				pointer->payload = realloc(pointer->payload, payloadlen);//페이로드 재할당
-
-				memcpy(pointer->payload, payload, payloadlen);//페이로드 복사
-				memcpy(pointer->topic, topic, strlen(topic) + 1);//토픽 복사
-
-				pointer->context.time_based_filter_timer = time_based_filter_timer_temp;//줄이던 타이머 재설정
+				time_based_filter_timer_temp = pointer->context->time_based_filter_timer;
+				hilight_set_publish_data(pointer, mosq, msg);////pub_data를 채워준다.
+		
+				pointer->context->time_based_filter_timer = time_based_filter_timer_temp;//줄이던 타이머 재설정
 				exist_context = 1;//데이터가 존재한다.
 				break;
 			}
@@ -1095,15 +1111,9 @@ void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, c
 		}
 		if (!exist_context) {//같은 id를 가진 context가 존재하지 않으면
 			pub_data = _mosquitto_malloc(sizeof(struct publish_data));
-			mosquitto_set_publish_data(pub_data, mosq, mid, payloadlen, qos, retain, dup);////pub_data를 채워준다.
+			hilight_set_publish_data(pub_data, mosq, msg);////pub_data를 채워준다.
 																						  //printf("pointer존재안함 : %s \n", pub_data->context.id);
 																						  //여긴 처음인경우
-
-																						 
-			pub_data->topic = _mosquitto_malloc(strlen(topic));
-			pub_data->payload = _mosquitto_malloc(payloadlen);
-			memcpy(pub_data->topic, topic, strlen(topic) + 1);
-			memcpy(pub_data->payload, payload, payloadlen);
 
 			context_last->next = pub_data;
 			pub_data->prev = context_last;
@@ -1112,22 +1122,20 @@ void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, c
 		}
 	}
 	///////=printf("★★size : %d\n", sizeof(*pub_data));
-	pthread_mutex_unlock(&time_based_mutex);
+	
 
 }
-void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data) {
-	pub_data->context.time_based_filter_timer = pub_data->context.time_based_filter;
+void hilight_disconnect_timet_based_filter(struct publish_data *pub_data) {
+	//pub_data->context->time_based_filter_timer = pub_data->context->time_based_filter;
 	if (context_head == pub_data) {
-		printf("disconnect err 1\n");
 		if (pub_data->next == NULL) {
-			printf("disconnect err 2\n");
 			context_head = NULL;
 			return;
 		}
 		else {
 			context_head = pub_data->next;
 			context_head->prev = NULL;
-			printf("disconnect err 3\n");
+			//printf("disconnect err 3\n");
 		}
 	}
 	else if (context_last == pub_data) {//지울 것이 마지막 이면
@@ -1138,12 +1146,14 @@ void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data) {
 		pub_data->prev->next = pub_data->next;
 		pub_data->next->prev = pub_data->prev;	
 	}
-	_mosquitto_free(pub_data->topic);//할당한 토픽 자원 반납
-	_mosquitto_free(pub_data->payload);//할당한 페이로드 자원 반납
+	//_mosquitto_free(pub_data->msg->store->payload);//할당한 토픽 자원 반납
+	//_mosquitto_free(pub_data->msg->store->topic);//할당한 토픽 자원 반납
+	//_mosquitto_free(pub_data->msg->store);//할당한 토픽 자원 반납
+	//_mosquitto_free(pub_data->context);//할당한 페이로드 자원 반납
 	_mosquitto_free(pub_data);//데이터 구조체 자원 반납
 }
 
-void *mosquitto_time_based_filter(void *ptr) {
+void *hilight_time_based_filter(void *ptr) {
 	struct publish_data *pub_data;
 	int rc;
 	pthread_mutex_init(&time_based_mutex, NULL);
@@ -1155,27 +1165,19 @@ void *mosquitto_time_based_filter(void *ptr) {
 		while (pub_data) {
 			/////==printf("★%s의 time_based_filter : %d★\n", pub_data->context.id, pub_data->context.time_based_filter_timer);
 
-			if (pub_data->context.time_based_filter_timer <= 0) {
+			if (pub_data->context->time_based_filter_timer <= 0) {
 				/*	printf("★[2]%s %d %d %s %d %d %d %d\n",pub_data->context.id, &pub_data->context, pub_data->mid, pub_data->topic, pub_data->payloadlen,
 				pub_data->qos, pub_data->retain, pub_data->retries);*/
 
-				////////////////여길 send_publish가 아니라 mqtt3_db_write를 부르는거로 짜보자~!!
-
-				rc = _mosquitto_send_publish(&pub_data->context, pub_data->mid, pub_data->topic, pub_data->payloadlen,
-					pub_data->payload, pub_data->qos, pub_data->retain, pub_data->retries);
-				if (!rc) {
-					//printf("★pub 성공\n");
-					mosquitto_disconnect_timet_based_filter(pub_data);
-				}
-				else {//////////////==여기로 갈 때도 있네! 조심 고쳐보자
-					//printf("★pub 실패\n");
-					mosquitto_disconnect_timet_based_filter(pub_data);
-					break;
-				}
+				
+				//mqtt3_db_messages_easy_queue(_mosquitto_get_db(), pub_data->context, pub_data->topic, 0, pub_data->payloadlen, pub_data->payload, pub_data->retain);
+				//printf("```````````````%d %d\n", pub_data->msg->qos, pub_data->msg->store->payloadlen);
+				pub_data->context->msgs = pub_data->msg;
+				hilight_disconnect_timet_based_filter(pub_data);
 
 			}
 			else {
-				pub_data->context.time_based_filter_timer -= 1;//200이면 10ms마다 1씩줄임 = 2000ms = 2초 후 메세지 전송				
+				pub_data->context->time_based_filter_timer -= 1;//200이면 10ms마다 1씩줄임 = 2000ms = 2초 후 메세지 전송				
 			}
 			pub_data = pub_data->next;
 		}
@@ -1188,7 +1190,7 @@ void *mosquitto_time_based_filter(void *ptr) {
 #endif
 	}
 }
-void mosquitto_time_based_filter_start() {
+void hilight_time_based_filter_start() {
 	printf("---------------------time_based_filter start!---------------------\n");
 	pthread_t thread;
 	int mrc = 0;
@@ -1197,8 +1199,8 @@ void mosquitto_time_based_filter_start() {
 
 	pthread_attr_init(&attr); // get default attributes
 
-	pthread_create(&thread, &attr, mosquitto_time_based_filter, NULL);
+	pthread_create(&thread, &attr, hilight_time_based_filter, NULL);
 
-	printf("Main thread create mosquitto_time_based_filter thread\n");
+	printf("Main thread create hilight_time_based_filter thread\n");
 	printf("------------------------------------------------------------------\n");
 }

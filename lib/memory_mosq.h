@@ -36,14 +36,14 @@ void *_mosquitto_realloc(void *ptr, size_t size);
 char *_mosquitto_strdup(const char *s);
 
 
-void mosquitto_set_publish_data(struct publish_data *pub_data, struct mosquitto mosq, uint16_t mid, uint32_t payloadlen, int qos, bool retain, bool dup);
-void *mosquitto_time_based_filter(void *ptr);///////////////////=타임베이스드 필터 추가
+void hilight_set_publish_data(struct publish_data *pub_data, struct mosquitto mosq, uint16_t mid, uint32_t payloadlen, int qos, bool retain, bool dup);
+void *hilight_time_based_filter(void *ptr);///////////////////=타임베이스드 필터 추가
 //void mosquitto_connect_timet_based_filter(struct mosquitto mosq);
-void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup);
-//void mosquitto_connect_timet_based_filter(struct mosquitto *context);
-void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data);
+//void mosquitto_connect_timet_based_filter(struct mosquitto *mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup);
+void hilight_connect_timet_based_filter(struct mosquitto *context, struct mosquitto_client_msg *msg);
+void hilight_disconnect_timet_based_filter(struct publish_data *pub_data);
 //void mosquitto_connect_timet_based_filter(struct mosquitto_db *db, struct mosquitto *context);
 //void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data);
-void mosquitto_time_based_filter_start();
+void hilight_time_based_filter_start();
 
 #endif
