@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\conf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\database.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\logging.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\loop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\memory_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\mosquitto.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\net.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\net_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\persist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\read_handle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\read_handle_client.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\read_handle_server.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\read_handle_shared.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\subs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\security.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\security_default.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\send_client_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\send_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\send_server.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\sys_tree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\time_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\tls_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\util_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\websockets.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\will_mosq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\bridge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\src\service.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\src\lib_load.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\memory_mosq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\src\mosquitto_broker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\net_mosq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\src\persist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\read_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\send_mosq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\util_mosq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\will_mosq.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Temp\mosquitto-1.4.14\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D13767FE-A52B-32B9-A2E0-1FB438DF3BA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6BCC6813-B5C5-3B94-B0C0-1F84EC6D8402}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

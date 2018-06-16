@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\cpp\mosquittopp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\cpp\mosquittopp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Temp\mosquitto-1.4.14\lib\cpp\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D13767FE-A52B-32B9-A2E0-1FB438DF3BA7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6BCC6813-B5C5-3B94-B0C0-1F84EC6D8402}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

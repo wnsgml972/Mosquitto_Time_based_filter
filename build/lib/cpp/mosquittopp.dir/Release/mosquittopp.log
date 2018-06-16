@@ -1,0 +1,4 @@
+﻿  Building Custom Rule C:/Temp/mosquitto-1.4.14/lib/cpp/CMakeLists.txt
+  CMake does not need to re-run because C:/Temp/mosquitto-1.4.14/build/lib/cpp/CMakeFiles/generate.stamp is up-to-date.
+  mosquittopp.cpp
+C:\Temp\mosquitto-1.4.14\lib\cpp\mosquittopp.cpp(219): error C2660: 'mosquitto_subscribe': 함수는 4개의 매개 변수를 사용하지 않습니다.

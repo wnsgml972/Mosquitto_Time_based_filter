@@ -1,0 +1,19 @@
+﻿  database.c
+C:\Temp\libwebsockets-2.4.1\lib\libwebsockets.h(76): warning C4005: 'strcasecmp': 매크로 재정의
+  C:\Temp\mosquitto-1.4.14\config.h(21): note: 'strcasecmp'의 이전 정의를 참조하십시오.
+C:\Temp\mosquitto-1.4.14\lib\net_mosq.h(23): warning C4142: 'SSIZE_T': 형식이 재정의되었지만 심각하지는 않습니다.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\basetsd.h(421): note: 'SSIZE_T' 선언을 참조하십시오.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
+  c:\temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.
+C:\Temp\mosquitto-1.4.14\src\database.c(312): warning C4028: 정식 매개 변수 6이(가) 선언과 다릅니다.
+C:\Temp\mosquitto-1.4.14\src\database.c(874): warning C4101: 'pub_data' :참조되지 않은 지역 변수입니다.
+  loop.c
+C:\Temp\libwebsockets-2.4.1\lib\libwebsockets.h(76): warning C4005: 'strcasecmp': 매크로 재정의
+  C:\Temp\mosquitto-1.4.14\config.h(21): note: 'strcasecmp'의 이전 정의를 참조하십시오.
+C:\Temp\mosquitto-1.4.14\lib\net_mosq.h(23): warning C4142: 'SSIZE_T': 형식이 재정의되었지만 심각하지는 않습니다.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\basetsd.h(421): note: 'SSIZE_T' 선언을 참조하십시오.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\include\stdbool.h(15): warning C4005: 'bool': 매크로 재정의
+  c:\temp\mosquitto-1.4.14\lib\mosquitto.h(36): note: 'bool'의 이전 정의를 참조하십시오.
+  코드를 생성하고 있습니다...
+c:\temp\mosquitto-1.4.14\src\database.c(854): warning C4172: 지역 변수 또는 임시: binary의 주소를 반환하고 있습니다.
+  mosquitto.vcxproj -> C:\Temp\mosquitto-1.4.14\build\src\Release\mosquitto.exe
