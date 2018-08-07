@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -31,7 +31,7 @@ int _mosquitto_send_pubcomp(struct mosquitto *mosq, uint16_t mid);
 int _mosquitto_send_publish(struct mosquitto *mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup);
 int _mosquitto_send_pubrec(struct mosquitto *mosq, uint16_t mid);
 int _mosquitto_send_pubrel(struct mosquitto *mosq, uint16_t mid);
-int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos, uint8_t topic_time_based_filter);
+int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos);
 int _mosquitto_send_unsubscribe(struct mosquitto *mosq, int *mid, const char *topic);
 
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -254,24 +254,14 @@ int _mosquitto_send_real_publish(struct mosquitto *mosq, uint16_t mid, const cha
 	assert(mosq);
 	assert(topic);
 
-	packetlen = 2+strlen(topic) + payloadlen;//여기서 2는 뭘까? 2바이트를 뜻하는거겠지?
-	if(qos > 0) packetlen += 2; /* For message id *///qos가 1이나 2이면 message id를 위해 길이를 2늘려준다.
+	packetlen = 2+strlen(topic) + payloadlen;
+	if(qos > 0) packetlen += 2; /* For message id */
 	packet = _mosquitto_calloc(1, sizeof(struct _mosquitto_packet));
 	if(!packet) return MOSQ_ERR_NOMEM;
-	
+
 	packet->mid = mid;
-	packet->command = PUBLISH | ((dup&0x1)<<3) | (qos<<1) | retain;//헤더 설정하는 부분(고정 헤더)
-	/*
-		0x30 = 10진수로 48 = 0011 0000
-		dup&0x1 = dup가 1이면 0000 0001 & 0000 0001 = 0000 0001
-		(dup&0x1)<<3 = 0000 1000
-		qos<<1 = qos가 1인경우 0000 0001 = 0000 0010
-		retain = 0000 0000이면 = 0000 0000
-		이것들을 | 연산하면 = 0011 1011
-		즉 앞의 0011 = MQTT Control Packet type부분이고(PUBLISH... 16종류)
-		뒤의 0011 = Flags specific to each MQTT Control Packet type 부분(플래그 비트 설정 부분)
-	*/
-	packet->remaining_length = packetlen;// 길이 설정
+	packet->command = PUBLISH | ((dup&0x1)<<3) | (qos<<1) | retain;
+	packet->remaining_length = packetlen;
 	rc = _mosquitto_packet_alloc(packet);
 	if(rc){
 		_mosquitto_free(packet);

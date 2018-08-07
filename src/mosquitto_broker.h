@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -101,7 +101,6 @@ struct _mqtt3_listener {
 };
 
 struct mqtt3_config {
-	char *config_file;
 	char *acl_file;
 	bool allow_anonymous;
 	bool allow_duplicate_messages;
@@ -137,7 +136,6 @@ struct mqtt3_config {
 	int sys_interval;
 	bool upgrade_outgoing_qos;
 	char *user;
-	bool verbose;
 #ifdef WITH_WEBSOCKETS
 	int websockets_log_level;
 	bool have_websockets_listener;
@@ -156,7 +154,8 @@ struct _mosquitto_subleaf {
 	struct _mosquitto_subleaf *next;
 	struct mosquitto *context;
 	int qos;
-	int time_based_filter;
+	unsigned long time;
+	short time_filter;
 };
 
 struct _mosquitto_subhier {
@@ -261,9 +260,11 @@ struct mosquitto_db{
 	int bridge_count;
 #endif
 	int msg_store_count;
+	char *config_file;
 	struct mqtt3_config *config;
 	int persistence_changes;
 	struct _mosquitto_auth_plugin auth_plugin;
+	bool verbose;
 #ifdef WITH_SYS_TREE
 	int subscription_count;
 	int retained_count;
@@ -287,7 +288,6 @@ enum mosquitto_bridge_start_type{
 struct _mqtt3_bridge_topic{
 	char *topic;
 	int qos;
-	int time_based_filter;
 	enum mqtt3_bridge_direction direction;
 	char *local_prefix;
 	char *remote_prefix;
@@ -367,14 +367,14 @@ struct mosquitto_db *_mosquitto_get_db(void);
  * Config functions
  * ============================================================ */
 /* Initialise config struct to default values. */
-void mqtt3_config_init(struct mqtt3_config *config);
+void mqtt3_config_init(struct mosquitto_db *db, struct mqtt3_config *config);
 /* Parse command line options into config. */
-int mqtt3_config_parse_args(struct mqtt3_config *config, int argc, char *argv[]);
+int mqtt3_config_parse_args(struct mosquitto_db *db, struct mqtt3_config *config, int argc, char *argv[]);
 /* Read configuration data from config->config_file into config.
  * If reload is true, don't process config options that shouldn't be reloaded (listeners etc)
  * Returns 0 on success, 1 if there is a configuration error or if a file cannot be opened.
  */
-int mqtt3_config_read(struct mqtt3_config *config, bool reload);
+int mqtt3_config_read(struct mosquitto_db *db, struct mqtt3_config *config, bool reload);
 /* Free all config data. */
 void mqtt3_config_cleanup(struct mqtt3_config *config);
 
@@ -441,7 +441,7 @@ void mqtt3_db_vacuum(void);
 /* ============================================================
  * Subscription functions
  * ============================================================ */
-int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char *sub, int qos, int time_based_filter, struct _mosquitto_subhier *root);
+int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char *sub, int qos, short tf, struct _mosquitto_subhier *root);
 int mqtt3_sub_remove(struct mosquitto_db *db, struct mosquitto *context, const char *sub, struct _mosquitto_subhier *root);
 int mqtt3_sub_search(struct mosquitto_db *db, struct _mosquitto_subhier *root, const char *source_id, const char *topic, int qos, int retain, struct mosquitto_msg_store *stored);
 void mqtt3_sub_tree_print(struct _mosquitto_subhier *root, int level);

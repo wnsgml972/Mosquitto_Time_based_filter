@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -35,7 +35,7 @@ int mqtt3_packet_handle(struct mosquitto_db *db, struct mosquitto *context)
 {
 	if(!context) return MOSQ_ERR_INVAL;
 
-	switch((context->in_packet.command)&0xF0){//////////0xF0 = 1111 0000
+	switch((context->in_packet.command)&0xF0){
 		case PINGREQ:
 			return _mosquitto_handle_pingreq(context);
 		case PINGRESP:
@@ -44,7 +44,7 @@ int mqtt3_packet_handle(struct mosquitto_db *db, struct mosquitto *context)
 			return _mosquitto_handle_pubackcomp(db, context, "PUBACK");
 		case PUBCOMP:
 			return _mosquitto_handle_pubackcomp(db, context, "PUBCOMP");
-		case PUBLISH://///////////////=PUBLISH 처리하는 부분
+		case PUBLISH:
 			return mqtt3_handle_publish(db, context);
 		case PUBREC:
 			return _mosquitto_handle_pubrec(context);
@@ -54,7 +54,7 @@ int mqtt3_packet_handle(struct mosquitto_db *db, struct mosquitto *context)
 			return mqtt3_handle_connect(db, context);
 		case DISCONNECT:
 			return mqtt3_handle_disconnect(db, context);
-		case SUBSCRIBE://///////////////=SUBSCRIBE 처리하는 부분
+		case SUBSCRIBE:
 			return mqtt3_handle_subscribe(db, context);
 		case UNSUBSCRIBE:
 			return mqtt3_handle_unsubscribe(db, context);
@@ -91,16 +91,15 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 	struct _mqtt3_bridge_topic *cur_topic;
 	bool match;
 #endif
-	//printf("여기로 보내겠지 \n");/////////여기서 context는 subscriber가 아니므로 timebasefilter는 0임!
-	/////////////////////////////////= header=0x80=PUBLISH일듯 1000 0000이겠지 그럼
-	dup = (header & 0x08)>>3;  //////= (1000 0000 & 0000 1000) >> 3   =   0000 0000
-	qos = (header & 0x06)>>1;  //////= (1000 0000 & 0000 0110) >> 1   =   0000 0000
+
+	dup = (header & 0x08)>>3;
+	qos = (header & 0x06)>>1;
 	if(qos == 3){
 		_mosquitto_log_printf(NULL, MOSQ_LOG_INFO,
 				"Invalid QoS in PUBLISH from %s, disconnecting.", context->id);
 		return 1;
 	}
-	retain = (header & 0x01);/////////=그러면 이거도 0임
+	retain = (header & 0x01);
 
 	if(_mosquitto_read_string(&context->in_packet, &topic)) return 1;
 	if(STREMPTY(topic)){
@@ -108,7 +107,7 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 		_mosquitto_free(topic);
 		return 1;
 	}
-#ifdef WITH_BRIDGE/////=브릿지부분 스킵
+#ifdef WITH_BRIDGE
 	if(context->bridge && context->bridge->topics && context->bridge->topic_remapping){
 		for(i=0; i<context->bridge->topic_count; i++){
 			cur_topic = &context->bridge->topics[i];
@@ -169,7 +168,7 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 		}
 	}
 
-	payloadlen = context->in_packet.remaining_length - context->in_packet.pos;/////=context->in_packet.pos = variable header의 길이
+	payloadlen = context->in_packet.remaining_length - context->in_packet.pos;
 #ifdef WITH_SYS_TREE
 	g_pub_bytes_received += payloadlen;
 #endif
@@ -180,7 +179,7 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 			_mosquitto_free(topic);
 			return MOSQ_ERR_NOMEM;
 		}
-		snprintf(topic_mount, len, "%s%s", context->listener->mount_point, topic);////////=토픽 앞부분(MSB,LSB + TOPIC)
+		snprintf(topic_mount, len, "%s%s", context->listener->mount_point, topic);
 		topic_mount[len] = '\0';
 
 		_mosquitto_free(topic);
@@ -216,23 +215,35 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 	}
 
 	_mosquitto_log_printf(NULL, MOSQ_LOG_DEBUG, "Received PUBLISH from %s (d%d, q%d, r%d, m%d, '%s', ... (%ld bytes))", context->id, dup, qos, retain, mid, topic, (long)payloadlen);
+	//printf("context msg_count %d", context->msg_count);
 	if(qos > 0){
-		mqtt3_db_message_store_find(context, mid, &stored);////////////
+		mqtt3_db_message_store_find(context, mid, &stored);
 	}
 	if(!stored){
 		dup = 0;
-		/////////////= mid는 0이고 topic과 payload를 저장한다 ★이부분은 PUBLISH에 대한 부분만!!★
 		if(mqtt3_db_message_store(db, context->id, mid, topic, qos, payloadlen, payload, retain, &stored, 0)){
 			_mosquitto_free(topic);
 			if(payload) _mosquitto_free(payload);
 			return 1;
 		}
+		//printf("#1 reference count : %d, (%s) context msg count : %d, db msg store count %d\n", stored->ref_count, context->id, context->msg_count, db->msg_store_count);
 	}else{
 		dup = 1;
 	}
+
 	switch(qos){
 		case 0:
 			if(mqtt3_db_messages_queue(db, context->id, topic, qos, retain, &stored)) rc = 1;
+			/*printf("#2 ");
+			if (!stored)
+				printf("stored (NULL) ,");
+			else
+				printf("reference count : %d, ", stored->ref_count);
+			if (!context) 
+				printf("context (NULL) ,");
+			else
+				printf("(%s) context msg count : %d, ", context->id, context->msg_count);
+			printf("db msg store count %d\n", db->msg_store_count);*/
 			break;
 		case 1:
 			if(mqtt3_db_messages_queue(db, context->id, topic, qos, retain, &stored)) rc = 1;
@@ -244,6 +255,16 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 			}else{
 				res = 0;
 			}
+			/*printf("#qos2-1 ");
+			if (!stored)
+				printf("stored (NULL) ,");
+			else
+				printf("reference count : %d, ", stored->ref_count);
+			if (!context)
+				printf("context (NULL) ,");
+			else
+				printf("(%s) context msg count : %d, ", context->id, context->msg_count);
+			printf("db msg store count %d\n", db->msg_store_count);*/
 			/* mqtt3_db_message_insert() returns 2 to indicate dropped message
 			 * due to queue. This isn't an error so don't disconnect them. */
 			if(!res){
@@ -251,11 +272,21 @@ int mqtt3_handle_publish(struct mosquitto_db *db, struct mosquitto *context)
 			}else if(res == 1){
 				rc = 1;
 			}
+			/*printf("#qos2-2 ");
+			if (!stored)
+				printf("stored (NULL) ,");
+			else
+				printf("reference count : %d, ", stored->ref_count);
+			if (!context)
+				printf("context (NULL) ,");
+			else
+				printf("(%s) context msg count : %d, ", context->id, context->msg_count);
+			printf("db msg store count %d\n", db->msg_store_count);*/
 			break;
 	}
 	_mosquitto_free(topic);
 	if(payload) _mosquitto_free(payload);
-
+	//printf("db msg store count %d\n", db->msg_store_count);
 	return rc;
 process_bad_message:
 	_mosquitto_free(topic);

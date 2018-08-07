@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -34,11 +34,12 @@ Contributors:
 #define STATUS_CONNECTING 0
 #define STATUS_CONNACK_RECVD 1
 #define STATUS_WAITING 2
+#define STATUS_DISCONNECTING 3
 
 /* Global variables for use in callbacks. See sub_client.c for an example of
  * using a struct to hold variables for use in callbacks. */
-static char *topic = "MQTT Examples";
-static char *message = "324";
+static char *topic = NULL;
+static char *message = NULL;
 static long msglen = 0;
 static int qos = 0;
 static int retain = 0;
@@ -62,10 +63,6 @@ void my_connect_callback(struct mosquitto *mosq, void *obj, int result)
 			case MSGMODE_CMD:
 			case MSGMODE_FILE:
 			case MSGMODE_STDIN_FILE:
-				printf("%s", message);
-				for (int i = 0; i < msglen; i++) {
-					printf("%d ",message[i]);
-				}
 				rc = mosquitto_publish(mosq, &mid_sent, topic, msglen, message, qos, retain);
 				break;
 			case MSGMODE_NULL:
@@ -331,7 +328,7 @@ int main(int argc, char *argv[])
 	username = cfg.username;
 	password = cfg.password;
 	quiet = cfg.quiet;
-	
+
 	if(cfg.pub_mode == MSGMODE_STDIN_FILE){
 		if(load_stdin()){
 			fprintf(stderr, "Error loading input from stdin.\n");
@@ -414,8 +411,15 @@ int main(int argc, char *argv[])
 					}
 				}
 				if(feof(stdin)){
-					last_mid = mid_sent;
-					status = STATUS_WAITING;
+					if(last_mid == -1){
+						/* Empty file */
+						mosquitto_disconnect(mosq);
+						disconnect_sent = true;
+						status = STATUS_DISCONNECTING;
+					}else{
+						last_mid = mid_sent;
+						status = STATUS_WAITING;
+					}
 				}
 			}else if(status == STATUS_WAITING){
 				if(last_mid_sent == last_mid && disconnect_sent == false){

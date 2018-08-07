@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="C:\Temp\mosquitto-1.4.14\build\CMakeFiles\481832e199aed9cb31f881c2cf5ab765\INSTALL_force.rule">
+    <CustomBuild Include="C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\f1f73f070751d3ca7ef9324fc0f26777\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{B06CA8A4-185E-33C0-933D-10B025FF7FFC}</UniqueIdentifier>
+      <UniqueIdentifier>{E9881DC1-BF95-3E44-8356-DC8AB67AA2E9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

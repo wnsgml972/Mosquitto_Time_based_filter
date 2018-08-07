@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -228,13 +228,17 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 	int spos, tpos;
 	bool multilevel_wildcard = false;
 
-	if(!sub || !topic || !result) return MOSQ_ERR_INVAL;
+	if(!result) return MOSQ_ERR_INVAL;
+	*result = false;
+
+	if(!sub || !topic){
+		return MOSQ_ERR_INVAL;
+	}
 
 	slen = strlen(sub);
 	tlen = strlen(topic);
 
 	if(!slen || !tlen){
-		*result = false;
 		return MOSQ_ERR_INVAL;
 	}
 
@@ -242,7 +246,6 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 		if((sub[0] == '$' && topic[0] != '$')
 				|| (topic[0] == '$' && sub[0] != '$')){
 
-			*result = false;
 			return MOSQ_ERR_SUCCESS;
 		}
 	}
@@ -269,7 +272,6 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 				return MOSQ_ERR_SUCCESS;
 			}else if(tpos == tlen && spos == slen-1 && sub[spos] == '+'){
 				if(spos > 0 && sub[spos-1] != '/'){
-					*result = false;
 					return MOSQ_ERR_INVAL;
 				}
 				spos++;
@@ -280,12 +282,10 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 			if(sub[spos] == '+'){
 				/* Check for bad "+foo" or "a/+foo" subscription */
 				if(spos > 0 && sub[spos-1] != '/'){
-					*result = false;
 					return MOSQ_ERR_INVAL;
 				}
 				/* Check for bad "foo+" or "foo+/a" subscription */
 				if(spos < slen-1 && sub[spos+1] != '/'){
-					*result = false;
 					return MOSQ_ERR_INVAL;
 				}
 				spos++;
@@ -298,19 +298,28 @@ int mosquitto_topic_matches_sub(const char *sub, const char *topic, bool *result
 				}
 			}else if(sub[spos] == '#'){
 				if(spos > 0 && sub[spos-1] != '/'){
-					*result = false;
 					return MOSQ_ERR_INVAL;
 				}
 				multilevel_wildcard = true;
 				if(spos+1 != slen){
-					*result = false;
 					return MOSQ_ERR_INVAL;
 				}else{
 					*result = true;
 					return MOSQ_ERR_SUCCESS;
 				}
 			}else{
-				*result = false;
+				/* Check for e.g. foo/bar matching foo/+/# */
+				if(spos > 0
+						&& spos+2 == slen
+						&& tpos == tlen
+						&& sub[spos-1] == '+'
+						&& sub[spos] == '/'
+						&& sub[spos+1] == '#')
+				{
+					*result = true;
+					multilevel_wildcard = true;
+					return MOSQ_ERR_SUCCESS;
+				}
 				return MOSQ_ERR_SUCCESS;
 			}
 		}
@@ -327,19 +336,33 @@ int _mosquitto_hex2bin(const char *hex, unsigned char *bin, int bin_max_len)
 {
 	BIGNUM *bn = NULL;
 	int len;
+	int leading_zero = 0;
+	int start = 0;
+	int i = 0;
+
+	/* Count the number of leading zero */
+	for(i=0; i<strlen(hex); i=i+2) {
+		if(strncmp(hex + i, "00", 2) == 0) {
+			leading_zero++;
+			/* output leading zero to bin */
+			bin[start++] = 0;
+		}else{
+			break;
+		}
+	}
 
 	if(BN_hex2bn(&bn, hex) == 0){
 		if(bn) BN_free(bn);
 		return 0;
 	}
-	if(BN_num_bytes(bn) > bin_max_len){
+	if(BN_num_bytes(bn) + leading_zero > bin_max_len){
 		BN_free(bn);
 		return 0;
 	}
 
-	len = BN_bn2bin(bn, bin);
+	len = BN_bn2bin(bn, bin + leading_zero);
 	BN_free(bn);
-	return len;
+	return len + leading_zero;
 }
 #endif
 

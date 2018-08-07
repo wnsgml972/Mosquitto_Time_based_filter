@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -336,6 +336,12 @@ int mqtt3_handle_connect(struct mosquitto_db *db, struct mosquitto *context)
 
 #ifdef WITH_TLS
 	if(context->listener && context->listener->ssl_ctx && context->listener->use_identity_as_username){
+		/* Don't need the username or password if provided */
+		_mosquitto_free(username);
+		username = NULL;
+		_mosquitto_free(password);
+		password = NULL;
+
 		if(!context->ssl){
 			_mosquitto_send_connack(context, 0, CONNACK_REFUSED_BAD_USERNAME_PASSWORD);
 			rc = 1;
@@ -623,34 +629,32 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 	int rc = 0;
 	int rc2;
 	uint16_t mid;
+	uint16_t tf;
 	char *sub;
 	uint8_t qos;
 	uint8_t *payload = NULL, *tmp_payload;
 	uint32_t payloadlen = 0;
 	int len;
 	char *sub_mount;
-	uint8_t time_based_filter = 0;
-	int is_normal_client = 0;
 
 	if(!context) return MOSQ_ERR_INVAL;
 	_mosquitto_log_printf(NULL, MOSQ_LOG_DEBUG, "Received SUBSCRIBE from %s", context->id);
 	/* FIXME - plenty of potential for memory leaks here */
-	printf("Subscribe 체크!!\n");/////=
+
 	if(context->protocol == mosq_p_mqtt311){
-		if((context->in_packet.command&0x0F) != 0x02){////////=SUB의 경우8 1000 0000 & 0000 1111 != 0000 0010   <=모르겠다. 여기 안들어갈거같음 3.11이 아니라 3.1쓸테니까
+		if((context->in_packet.command&0x0F) != 0x02){
 			return MOSQ_ERR_PROTOCOL;
 		}
 	}
 	if(_mosquitto_read_uint16(&context->in_packet, &mid)) return 1;
 
 	while(context->in_packet.pos < context->in_packet.remaining_length){
-		//printf("%d!!!\n\n", context->in_packet.remaining_length);
 		sub = NULL;
 		if(_mosquitto_read_string(&context->in_packet, &sub)){
 			if(payload) _mosquitto_free(payload);
 			return 1;
 		}
-		//printf("여긴가 1!!\n");////=
+
 		if(sub){
 			if(!strlen(sub)){
 				_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Empty subscription string from %s, disconnecting.",
@@ -659,7 +663,6 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 				if(payload) _mosquitto_free(payload);
 				return 1;
 			}
-			//printf("여긴가 2!!\n");////=
 			if(mosquitto_sub_topic_check(sub)){
 				_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Invalid subscription string from %s, disconnecting.",
 					context->address);
@@ -667,23 +670,21 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 				if(payload) _mosquitto_free(payload);
 				return 1;
 			}
-			//printf("여긴가 3!!\n");////=
+
 			if(_mosquitto_read_byte(&context->in_packet, &qos)){
 				_mosquitto_free(sub);
 				if(payload) _mosquitto_free(payload);
 				return 1;
 			}
-			//printf("여긴가 4!!\n");////=
-			if (_mosquitto_read_byte(&context->in_packet, &time_based_filter)) {				
-				printf("일반 클라이언트!");
-				time_based_filter = 0;
-				is_normal_client = 1;
+
+			if (_mosquitto_read_short(&context->in_packet, &tf)) {
+				_mosquitto_free(sub);
+				if (payload) _mosquitto_free(payload);
+				return 1;
 			}
-			//printf("mqtt3_handle_subscribe로 time_based_filter = %d 들어옴!\n", time_based_filter);//////=★
-			context->time_based_filter = time_based_filter;
-			context->time_based_filter_timer = time_based_filter;
+
 			if(qos > 2){
-				_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Invalid time_based_filter in subscription command from %s, disconnecting.",
+				_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Invalid QoS in subscription command from %s, disconnecting.",
 					context->address);
 				_mosquitto_free(sub);
 				if(payload) _mosquitto_free(payload);
@@ -691,7 +692,6 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 			}
 			if(context->listener && context->listener->mount_point){
 				len = strlen(context->listener->mount_point) + strlen(sub) + 1;
-				printf("길이는 %d!!\n\n");
 				sub_mount = _mosquitto_malloc(len+1);
 				if(!sub_mount){
 					_mosquitto_free(sub);
@@ -705,7 +705,7 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 				sub = sub_mount;
 
 			}
-			_mosquitto_log_printf(NULL, MOSQ_LOG_DEBUG, "\t%s (QoS %d)", sub, qos);
+			_mosquitto_log_printf(NULL, MOSQ_LOG_DEBUG, "\t%s (QoS %d) (TF %d)", sub, qos, tf);
 
 #if 0
 			/* FIXME
@@ -733,29 +733,24 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 						return rc;
 				}
 			}
-#endif			
-			//printf("err123 %s %s %d %d\n", context->id, sub, qos, time_based_filter);
-			if(qos != 0x80){//////1000 0000
-				
-				rc2 = mqtt3_sub_add(db, context, sub, qos, time_based_filter, &db->subs);/////////=subscriber 등록하는부분 time_based_filter추가함
-				
-				if(rc2 == MOSQ_ERR_SUCCESS){////=시스템토픽 구독하면 열루옴.
+#endif
+
+			if(qos != 0x80){
+				rc2 = mqtt3_sub_add(db, context, sub, qos, tf, &db->subs);
+				if(rc2 == MOSQ_ERR_SUCCESS){
 					if(mqtt3_retain_queue(db, context, sub, qos)) rc = 1;
-					
 				}else if(rc2 != -1){
 					rc = rc2;
 				}
 				_mosquitto_log_printf(NULL, MOSQ_LOG_SUBSCRIBE, "%s %d %s", context->id, qos, sub);
 			}
-			
 			_mosquitto_free(sub);
-			
-			tmp_payload = _mosquitto_realloc(payload, payloadlen + 2);//////=여기도 +1 인데 +2로바꿈(time_based_filter)
+
+			tmp_payload = _mosquitto_realloc(payload, payloadlen + 1);
 			if(tmp_payload){
 				payload = tmp_payload;
-				payload[payloadlen++] = qos;/////////==여기랑 이아래줄 바꿈
-				if(is_normal_client==0)//일반 클라이언트가 아닐 때
-					payload[payloadlen++] = time_based_filter;//
+				payload[payloadlen] = qos;
+				payloadlen++;
 			}else{
 				if(payload) _mosquitto_free(payload);
 
@@ -763,20 +758,20 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 			}
 		}
 	}
+
 	if(context->protocol == mosq_p_mqtt311){
 		if(payloadlen == 0){
 			/* No subscriptions specified, protocol error. */
 			return MOSQ_ERR_PROTOCOL;
 		}
 	}
-	printf("subscribe subback!!\n");////=
 	if(_mosquitto_send_suback(context, mid, payloadlen, payload)) rc = 1;
-	printf("subscribe subback2!!\n");////=
 	_mosquitto_free(payload);
 	
 #ifdef WITH_PERSISTENCE
 	db->persistence_changes++;
 #endif
+
 	return rc;
 }
 

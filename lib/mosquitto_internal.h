@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -128,7 +128,7 @@ enum _mosquitto_transport {
 	mosq_t_sctp = 3
 };
 
-struct _mosquitto_packet{///////////=실질적으로 보내지는 내용의 형태
+struct _mosquitto_packet{
 	uint8_t *payload;
 	struct _mosquitto_packet *next;
 	uint32_t remaining_mult;
@@ -152,19 +152,12 @@ struct mosquitto_message_all{
 
 struct mosquitto {
 	mosq_sock_t sock;
-
-	int time_based_filter;////////=0~255 사이의 시간을이용 15이면 15*10ms = 150ms마다 받음
-	int time_based_filter_timer;	
-	bool using_time_based_filter;
-	bool time_based_publish;
-	struct context_data *context_data;
 #ifndef WITH_BROKER
 	mosq_sock_t sockpairR, sockpairW;
 #endif
 #if defined(__GLIBC__) && defined(WITH_ADNS)
 	struct gaicb *adns; /* For getaddrinfo_a */
 #endif
-	
 	enum _mosquitto_protocol protocol;
 	char *address;
 	char *id;
@@ -280,32 +273,6 @@ struct mosquitto {
 	struct mosquitto *for_free_next;
 #endif
 };
-
-
-struct publish_data {
-	uint16_t mid;
-	int retries;
-	int retain;
-	char *topic;
-	int qos;
-	uint32_t payloadlen;
-	void *payload;
-	struct mosquitto context;
-	struct publish_data *next;
-	struct publish_data *prev;/////////////////=여기까지 내가 만든거
-};
-
-//struct publish_data {
-//	struct mosquitto *context;
-//	struct publish_data *next;
-//	struct publish_data *prev;/////////////////=여기까지 내가 만든거
-//};
-//struct publish_data2 {
-//	struct mosquitto *context;
-//	struct mosquitto_db *db;
-//	struct publish_data *next;
-//	struct publish_data *prev;/////////////////=여기까지 내가 만든거
-//};
 
 #define STREMPTY(str) (str[0] == '\0')
 

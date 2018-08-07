@@ -1,4 +1,4 @@
-# Install script for directory: C:/Temp/mosquitto-1.4.14
+# Install script for directory: C:/TEMP/mosquitto-1.4.15
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,19 +34,19 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE FILE FILES
-    "C:/Temp/mosquitto-1.4.14/mosquitto.conf"
-    "C:/Temp/mosquitto-1.4.14/aclfile.example"
-    "C:/Temp/mosquitto-1.4.14/pskfile.example"
-    "C:/Temp/mosquitto-1.4.14/pwfile.example"
+    "C:/TEMP/mosquitto-1.4.15/mosquitto.conf"
+    "C:/TEMP/mosquitto-1.4.15/aclfile.example"
+    "C:/TEMP/mosquitto-1.4.15/pskfile.example"
+    "C:/TEMP/mosquitto-1.4.15/pwfile.example"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Temp/mosquitto-1.4.14/build/lib/cmake_install.cmake")
-  include("C:/Temp/mosquitto-1.4.14/build/client/cmake_install.cmake")
-  include("C:/Temp/mosquitto-1.4.14/build/src/cmake_install.cmake")
-  include("C:/Temp/mosquitto-1.4.14/build/man/cmake_install.cmake")
+  include("C:/TEMP/mosquitto-1.4.15/build/lib/cmake_install.cmake")
+  include("C:/TEMP/mosquitto-1.4.15/build/client/cmake_install.cmake")
+  include("C:/TEMP/mosquitto-1.4.15/build/src/cmake_install.cmake")
+  include("C:/TEMP/mosquitto-1.4.15/build/man/cmake_install.cmake")
 
 endif()
 
@@ -58,5 +58,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Temp/mosquitto-1.4.14/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/TEMP/mosquitto-1.4.15/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

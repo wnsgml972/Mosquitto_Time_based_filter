@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -193,7 +193,7 @@ int _mosquitto_packet_queue(struct mosquitto *mosq, struct _mosquitto_packet *pa
 	}
 
 	if(mosq->in_callback == false && mosq->threaded == mosq_ts_none){
-		return _mosquitto_packet_write(mosq);////////이부분을 통해 메세지 보낸다.
+		return _mosquitto_packet_write(mosq);
 	}else{
 		return MOSQ_ERR_SUCCESS;
 	}
@@ -214,33 +214,39 @@ int _mosquitto_socket_close(struct mosquitto *mosq)
 
 	assert(mosq);
 #ifdef WITH_TLS
-	if(mosq->ssl){
-		SSL_shutdown(mosq->ssl);
-		SSL_free(mosq->ssl);
-		mosq->ssl = NULL;
-	}
-	if(mosq->ssl_ctx){
-		SSL_CTX_free(mosq->ssl_ctx);
-		mosq->ssl_ctx = NULL;
+#ifdef WITH_WEBSOCKETS
+	if(!mosq->wsi)
+#endif
+	{
+		if(mosq->ssl){
+			SSL_shutdown(mosq->ssl);
+			SSL_free(mosq->ssl);
+			mosq->ssl = NULL;
+		}
+		if(mosq->ssl_ctx){
+			SSL_CTX_free(mosq->ssl_ctx);
+			mosq->ssl_ctx = NULL;
+		}
 	}
 #endif
 
-	if((int)mosq->sock >= 0){
-#ifdef WITH_BROKER
-		HASH_DELETE(hh_sock, db->contexts_by_sock, mosq);
-#endif
-		rc = COMPAT_CLOSE(mosq->sock);
-		mosq->sock = INVALID_SOCKET;
 #ifdef WITH_WEBSOCKETS
-	}else if(mosq->sock == WEBSOCKET_CLIENT){
+	if(mosq->wsi)
+	{
 		if(mosq->state != mosq_cs_disconnecting){
 			mosq->state = mosq_cs_disconnect_ws;
 		}
-		if(mosq->wsi){
-			libwebsocket_callback_on_writable(mosq->ws_context, mosq->wsi);
-		}
-		mosq->sock = INVALID_SOCKET;
+		libwebsocket_callback_on_writable(mosq->ws_context, mosq->wsi);
+	}else
 #endif
+	{
+		if((int)mosq->sock >= 0){
+#ifdef WITH_BROKER
+			HASH_DELETE(hh_sock, db->contexts_by_sock, mosq);
+#endif
+			rc = COMPAT_CLOSE(mosq->sock);
+			mosq->sock = INVALID_SOCKET;
+		}
 	}
 
 #ifdef WITH_BROKER
@@ -323,7 +329,6 @@ int _mosquitto_try_connect_step2(struct mosquitto *mosq, uint16_t port, mosq_soc
 
 		/* Set non-blocking */
 		if(_mosquitto_socket_nonblock(*sock)){
-			COMPAT_CLOSE(*sock);
 			continue;
 		}
 
@@ -338,7 +343,6 @@ int _mosquitto_try_connect_step2(struct mosquitto *mosq, uint16_t port, mosq_soc
 
 			/* Set non-blocking */
 			if(_mosquitto_socket_nonblock(*sock)){
-				COMPAT_CLOSE(*sock);
 				continue;
 			}
 			break;
@@ -423,7 +427,6 @@ int _mosquitto_try_connect(struct mosquitto *mosq, const char *host, uint16_t po
 		if(!blocking){
 			/* Set non-blocking */
 			if(_mosquitto_socket_nonblock(*sock)){
-				COMPAT_CLOSE(*sock);
 				continue;
 			}
 		}
@@ -440,7 +443,6 @@ int _mosquitto_try_connect(struct mosquitto *mosq, const char *host, uint16_t po
 			if(blocking){
 				/* Set non-blocking */
 				if(_mosquitto_socket_nonblock(*sock)){
-					COMPAT_CLOSE(*sock);
 					continue;
 				}
 			}
@@ -658,6 +660,19 @@ int _mosquitto_socket_connect(struct mosquitto *mosq, const char *host, uint16_t
 	return rc;
 }
 
+int _mosquitto_read_short(struct _mosquitto_packet *packet, uint16_t *tf)
+{
+	assert(packet);
+	if (packet->pos + 2 > packet->remaining_length) {
+		*tf = 0;
+	} else {
+		*tf = *((short *)&packet->payload[packet->pos]);
+		packet->pos += 2;
+	}
+
+	return MOSQ_ERR_SUCCESS;
+}
+
 int _mosquitto_read_byte(struct _mosquitto_packet *packet, uint8_t *byte)
 {
 	assert(packet);
@@ -799,23 +814,7 @@ ssize_t _mosquitto_net_read(struct mosquitto *mosq, void *buf, size_t count)
 	}
 #endif
 }
-//////////////////////////문자 하나를 2진수로 바꾼 문자열배열로 변환/////////////////////////////////////////////////
-char* makeBinary(char c) {
-	char binary[10];
-	int index = 0;
-	int max_num = 128;
-	for (int i = 0; i < 9; i++) {
-		if (i == 4) {
-			binary[i] = ' ';
-		}
-		else {
-			binary[i] = (c & max_num) ? '1' : '0';
-			max_num /= 2;
-		}
-	}	
-	binary[9] = '\0';
-	return binary;
-}
+
 ssize_t _mosquitto_net_write(struct mosquitto *mosq, void *buf, size_t count)
 {
 #ifdef WITH_TLS
@@ -858,29 +857,6 @@ ssize_t _mosquitto_net_write(struct mosquitto *mosq, void *buf, size_t count)
 #ifndef WIN32
 	return write(mosq->sock, buf, count);
 #else
-		////////////////////////////////////////////////////수정한 부분//////////////////////////////////////////////////////////////////////////////////////
-		//int num = 0;
-		//int remainlen = ((char *)buf)[1];
-		//int len = ((char *)buf)[3];
-		////printf("[[[[[[%d %d %d\n", mosq->current_out_packet->command, ((mosq->current_out_packet->command) & 0xF6), PUBLISH);
-		//if (((mosq->current_out_packet->command) & 0xF6) == PUBLISH) {
-		//	printf("Topic(%d) : ", len);
-		//	for (int i = 4; i < 4 + len; i++) {
-		//		printf("%c", ((char *)buf)[i]);
-		//	}
-		//	((char *)buf)[remainlen+2] = '\0';
-		//	printf("\nMessage(%d) : ", strlen(((char *)buf) + 4 + len));
-		//	for (int i = 4+len; i < remainlen+2; i++) {
-		//		printf("%c", ((char *)buf)[i]);
-		//	}
-		//	printf("\n-------------------------------------------------------\n\n");
-		//}
-		/*for (int i = 0; i < count; i++) {			
-			printf("~%c    -    %s~   %d %d  \n",((char *)buf)[i], makeBinary(((char *)buf)[i]), ((char *)buf)[i], i);
-			//Sleep(300);
-		}*/
-		//printf("\n");
-		//여기서 진짜 payload 전송된다! 근데 topic + message가 합쳐져서 send된다.
 	return send(mosq->sock, buf, count, 0);
 #endif
 
@@ -893,7 +869,7 @@ int _mosquitto_packet_write(struct mosquitto *mosq)
 {
 	ssize_t write_length;
 	struct _mosquitto_packet *packet;
-	
+
 	if(!mosq) return MOSQ_ERR_INVAL;
 	if(mosq->sock == INVALID_SOCKET) return MOSQ_ERR_NO_CONN;
 
@@ -908,7 +884,11 @@ int _mosquitto_packet_write(struct mosquitto *mosq)
 	}
 	pthread_mutex_unlock(&mosq->out_packet_mutex);
 
+#if defined(WITH_TLS) && !defined(WITH_BROKER)
+	if((mosq->state == mosq_cs_connect_pending)||mosq->want_connect){
+#else
 	if(mosq->state == mosq_cs_connect_pending){
+#endif
 		pthread_mutex_unlock(&mosq->current_out_packet_mutex);
 		return MOSQ_ERR_SUCCESS;
 	}
@@ -917,8 +897,7 @@ int _mosquitto_packet_write(struct mosquitto *mosq)
 		packet = mosq->current_out_packet;
 
 		while(packet->to_process > 0){
-			//printf("%d!!\n\n", packet->to_process);
-			write_length = _mosquitto_net_write(mosq, &(packet->payload[packet->pos]), packet->to_process);///////=보내는 부분
+			write_length = _mosquitto_net_write(mosq, &(packet->payload[packet->pos]), packet->to_process);
 			if(write_length > 0){
 #if defined(WITH_BROKER) && defined(WITH_SYS_TREE)
 				g_bytes_sent += write_length;
@@ -1031,7 +1010,6 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 	ssize_t read_length;
 	int rc = 0;
 
-	
 	if(!mosq) return MOSQ_ERR_INVAL;
 	if(mosq->sock == INVALID_SOCKET) return MOSQ_ERR_NO_CONN;
 	if(mosq->state == mosq_cs_connect_pending){
@@ -1053,8 +1031,7 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 	 * Finally, free the memory and reset everything to starting conditions.
 	 */
 	if(!mosq->in_packet.command){
-		read_length = _mosquitto_net_read(mosq, &byte, 1);///////////////////=내 생각에 1바이트 읽어서 SUB,PUB,ACK등 구별하려고?
-		//printf("%d!!\n",read_length);////=
+		read_length = _mosquitto_net_read(mosq, &byte, 1);
 		if(read_length == 1){
 			mosq->in_packet.command = byte;
 #ifdef WITH_BROKER
@@ -1104,7 +1081,7 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 				g_bytes_received++;
 #endif
 				mosq->in_packet.remaining_length += (byte & 127) * mosq->in_packet.remaining_mult;
-				mosq->in_packet.remaining_mult *= 128;/////////////////////////==길이구하는공식
+				mosq->in_packet.remaining_mult *= 128;
 			}else{
 				if(read_length == 0) return MOSQ_ERR_CONN_LOST; /* EOF */
 #ifdef WIN32
@@ -1125,6 +1102,35 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 		/* We have finished reading remaining_length, so make remaining_count
 		 * positive. */
 		mosq->in_packet.remaining_count *= -1;
+#ifdef WITH_BROKER
+		/* Check packet sizes before allocating memory.
+		 * Will need modifying for MQTT v5. */
+		switch(mosq->in_packet.command & 0xF0){
+			case CONNECT:
+				if(mosq->in_packet.remaining_length > 327699){
+					return MOSQ_ERR_PROTOCOL;
+				}
+				break;
+
+			case PUBACK:
+			case PUBREC:
+			case PUBREL:
+			case PUBCOMP:
+			case UNSUBACK:
+				if(mosq->in_packet.remaining_length != 2){
+					return MOSQ_ERR_PROTOCOL;
+				}
+				break;
+
+			case PINGREQ:
+			case PINGRESP:
+			case DISCONNECT:
+				if(mosq->in_packet.remaining_length != 0){
+					return MOSQ_ERR_PROTOCOL;
+				}
+				break;
+		}
+#endif
 
 		if(mosq->in_packet.remaining_length > 0){
 			mosq->in_packet.payload = _mosquitto_malloc(mosq->in_packet.remaining_length*sizeof(uint8_t));
@@ -1132,8 +1138,7 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 			mosq->in_packet.to_process = mosq->in_packet.remaining_length;
 		}
 	}
-	//printf("%d!!\n", mosq->in_packet.remaining_length);////=
-	while(mosq->in_packet.to_process>0){/////////////////////페이로드 읽는부분!!!!
+	while(mosq->in_packet.to_process>0){
 		read_length = _mosquitto_net_read(mosq, &(mosq->in_packet.payload[mosq->in_packet.pos]), mosq->in_packet.to_process);
 		if(read_length > 0){
 #if defined(WITH_BROKER) && defined(WITH_SYS_TREE)
@@ -1167,8 +1172,6 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 			}
 		}
 	}
-	//printf("데이터 다 읽었다!\n");////=
-	////////////=데이터 다 읽은 상태!
 	/* All data for this packet is read. */
 	mosq->in_packet.pos = 0;
 #ifdef WITH_BROKER
@@ -1178,25 +1181,16 @@ int _mosquitto_packet_read(struct mosquitto *mosq)
 		g_pub_msgs_received++;
 	}
 #  endif
-	//printf("mqtt3_packet_handle 들어간다!!\n");////=
-	rc = mqtt3_packet_handle(db, mosq);////////////////////=브로커에서 PUB, SUB등등 받으면 처리하는부분
-	//printf("mqtt3_packet_handle 나왔다!!\n");////=
+	rc = mqtt3_packet_handle(db, mosq);
 #else
-	//printf("mqtt3_packet_handle else 들어간다!!\n");////=
 	rc = _mosquitto_packet_handle(mosq);
-	//printf("mqtt3_packet_handle else 나왔다!!\n");////=
 #endif
-	//printf("rc = %d!!\n", rc);////=
 	/* Free data and reset values */
 	_mosquitto_packet_cleanup(&mosq->in_packet);
 
 	pthread_mutex_lock(&mosq->msgtime_mutex);
 	mosq->last_msg_in = mosquitto_time();
 	pthread_mutex_unlock(&mosq->msgtime_mutex);
-#ifdef WITH_BROKER///////////////////////이부분 출력용
-	//printf("id : %s, use_time_base_filter : %d\n\n", mosq->id, mosq->time_based_filter);
-	//printf("id : %s  ||  msg : %s  ||  topic : %s  ||  use_time_base_filter : %d\n\n",mosq->id, mosq->msgs->store->payload, mosq->msgs->store->topic, mosq->use_time_base_filter);
-#endif
 	return rc;
 }
 
@@ -1296,7 +1290,6 @@ int _mosquitto_socketpair(mosq_sock_t *pairR, mosq_sock_t *pairW)
 			continue;
 		}
 		if(_mosquitto_socket_nonblock(spR)){
-			COMPAT_CLOSE(spR);
 			COMPAT_CLOSE(listensock);
 			continue;
 		}
@@ -1324,7 +1317,6 @@ int _mosquitto_socketpair(mosq_sock_t *pairR, mosq_sock_t *pairW)
 
 		if(_mosquitto_socket_nonblock(spW)){
 			COMPAT_CLOSE(spR);
-			COMPAT_CLOSE(spW);
 			COMPAT_CLOSE(listensock);
 			continue;
 		}
@@ -1342,13 +1334,11 @@ int _mosquitto_socketpair(mosq_sock_t *pairR, mosq_sock_t *pairW)
 		return MOSQ_ERR_ERRNO;
 	}
 	if(_mosquitto_socket_nonblock(sv[0])){
-		COMPAT_CLOSE(sv[0]);
 		COMPAT_CLOSE(sv[1]);
 		return MOSQ_ERR_ERRNO;
 	}
 	if(_mosquitto_socket_nonblock(sv[1])){
 		COMPAT_CLOSE(sv[0]);
-		COMPAT_CLOSE(sv[1]);
 		return MOSQ_ERR_ERRNO;
 	}
 	*pairR = sv[0];

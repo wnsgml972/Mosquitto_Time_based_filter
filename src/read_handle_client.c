@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -70,7 +70,7 @@ int mqtt3_handle_connack(struct mosquitto_db *db, struct mosquitto *context)
 				}
 				for(i=0; i<context->bridge->topic_count; i++){
 					if(context->bridge->topics[i].direction == bd_in || context->bridge->topics[i].direction == bd_both){
-						if(_mosquitto_send_subscribe(context, NULL, context->bridge->topics[i].remote_topic, context->bridge->topics[i].qos,context->bridge->topics[i].time_based_filter)){///////=여기에도 time_based_filter 넣어야해서 마지막인자 수정
+						if(_mosquitto_send_subscribe(context, NULL, context->bridge->topics[i].remote_topic, context->bridge->topics[i].qos)){
 							return 1;
 						}
 					}else{

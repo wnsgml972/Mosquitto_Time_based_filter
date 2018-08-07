@@ -1,102 +1,102 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\logging_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\logging_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\memory_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\memory_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\messages_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\messages_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\mosquitto.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\mosquitto.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\net_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\net_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\read_handle.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\read_handle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\read_handle_client.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\read_handle_client.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\read_handle_shared.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\read_handle_shared.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\send_client_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\send_client_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\send_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\send_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\socks_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\socks_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\srv_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\srv_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\thread_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\thread_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\time_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\time_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\tls_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\tls_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\util_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\util_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Temp\mosquitto-1.4.14\lib\will_mosq.c">
+    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\lib\will_mosq.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\logging_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\logging_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\memory_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\memory_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\messages_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\messages_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\mosquitto.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\mosquitto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\mosquitto_internal.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\mosquitto_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\mqtt3_protocol.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\mqtt3_protocol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\net_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\net_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\read_handle.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\read_handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\send_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\send_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\util_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\util_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Temp\mosquitto-1.4.14\lib\will_mosq.h">
+    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\lib\will_mosq.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Temp\mosquitto-1.4.14\lib\CMakeLists.txt" />
+    <CustomBuild Include="C:\TEMP\mosquitto-1.4.15\lib\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{D13767FE-A52B-32B9-A2E0-1FB438DF3BA7}</UniqueIdentifier>
+      <UniqueIdentifier>{1C420828-F554-3FD1-9267-F5F950DF4B2E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{6BCC6813-B5C5-3B94-B0C0-1F84EC6D8402}</UniqueIdentifier>
+      <UniqueIdentifier>{FD51A08B-C603-3551-ABDC-25107FFEDE7D}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

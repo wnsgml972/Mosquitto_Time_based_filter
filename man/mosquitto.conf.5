@@ -2,12 +2,12 @@
 .\"     Title: mosquitto.conf
 .\"    Author: [see the "Author" section]
 .\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
-.\"      Date: 07/10/2017
+.\"      Date: 02/28/2018
 .\"    Manual: File formats and conventions
 .\"    Source: Mosquitto Project
 .\"  Language: English
 .\"
-.TH "MOSQUITTO\&.CONF" "5" "07/10/2017" "Mosquitto Project" "File formats and conventions"
+.TH "MOSQUITTO\&.CONF" "5" "02/28/2018" "Mosquitto Project" "File formats and conventions"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -79,7 +79,7 @@ is true\&. User specific topic ACLs are added after a user line as follows:
 user <username>
 .sp
 The username referred to here is the same as in
-\fBpassword_fil\fRe\&. It is not the clientid\&.
+\fBpassword_file\fR\&. It is not the clientid\&.
 .sp
 It is also possible to define ACLs based on pattern substitution within the topic\&. The form is the same as for the topic keyword, but using pattern as the keyword\&.
 .sp
@@ -781,7 +781,7 @@ Set the amount of time a bridge using the lazy start type must be idle before it
 \fBlocal_clientid\fR \fIid\fR
 .RS 4
 Set the clientid to use on the local broker\&. If not defined, this defaults to
-\fBlocal\&.<clientid>\fR\&. If you are bridging a broker to itself, it is important that local_clientid and clientid do not match\&.
+\fBlocal\&.<remote_clientid>\fR\&. If you are bridging a broker to itself, it is important that local_clientid and remote_clientid do not match\&.
 .RE
 .PP
 \fBlocal_password\fR \fIpassword\fR
@@ -797,14 +797,14 @@ Configure the username to be used when connecting this bridge to the local broke
 \fBnotifications\fR [ true | false ]
 .RS 4
 If set to
-\fItrue\fR, publish notification messages to the local and remote brokers giving information about the state of the bridge connection\&. Retained messages are published to the topic $SYS/broker/connection/<clientid>/state unless otherwise set with
+\fItrue\fR, publish notification messages to the local and remote brokers giving information about the state of the bridge connection\&. Retained messages are published to the topic $SYS/broker/connection/<remote_clientid>/state unless otherwise set with
 \fBnotification_topic\fRs\&. If the message is 1 then the connection is active, or 0 if the connection has failed\&. Defaults to
 \fItrue\fR\&.
 .RE
 .PP
 \fBnotification_topic\fR \fItopic\fR
 .RS 4
-Choose the topic on which notifications will be published for this bridge\&. If not set the messages will be sent on the topic $SYS/broker/connection/<clientid>/state\&.
+Choose the topic on which notifications will be published for this bridge\&. If not set the messages will be sent on the topic $SYS/broker/connection/<remote_clientid>/state\&.
 .RE
 .PP
 \fBremote_clientid\fR \fIid\fR
@@ -1062,15 +1062,6 @@ Defaults to
 .SS "SSL/TLS Support"
 .PP
 The following options are available for all bridges to configure SSL/TLS support\&.
-.PP
-\fBbridge_attempt_unsubscribe\fR [ true | false ]
-.RS 4
-If a bridge has topics that have "out" direction, the default behaviour is to send an unsubscribe request to the remote broker on that topic\&. This means that changing a topic direction from "in" to "out" will not keep receiving incoming messages\&. Sending these unsubscribe requests is not always desirable, setting
-\fBbridge_attempt_unsubscribe\fR
-to
-\fIfalse\fR
-will disable sending the unsubscribe request\&.
-.RE
 .PP
 \fBbridge_cafile\fR \fIfile path\fR
 .RS 4

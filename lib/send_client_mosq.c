@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -95,7 +95,7 @@ int _mosquitto_send_connect(struct mosquitto *mosq, uint16_t keepalive, bool cle
 	}
 
 	/* Variable header */
-	if(version == MQTT_PROTOCOL_V31){//////////=이거 사용함!! MQlsdp보냄 3.1.1은 MQTT라고보내고
+	if(version == MQTT_PROTOCOL_V31){
 		_mosquitto_write_string(packet, PROTOCOL_NAME_v31, strlen(PROTOCOL_NAME_v31));
 	}else if(version == MQTT_PROTOCOL_V311){
 		_mosquitto_write_string(packet, PROTOCOL_NAME_v311, strlen(PROTOCOL_NAME_v311));
@@ -157,7 +157,7 @@ int _mosquitto_send_disconnect(struct mosquitto *mosq)
 	return _mosquitto_send_simple_command(mosq, DISCONNECT);
 }
 
-int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos, uint8_t topic_time_based_filter)
+int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos)
 {
 	/* FIXME - only deals with a single topic */
 	struct _mosquitto_packet *packet = NULL;
@@ -171,9 +171,9 @@ int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topi
 	packet = _mosquitto_calloc(1, sizeof(struct _mosquitto_packet));
 	if(!packet) return MOSQ_ERR_NOMEM;
 
-	//packetlen = 2 + 2+strlen(topic) + 1;///////= Variable Header(2) + MSB(1) + LSB(토픽길이)(1) + strlen(topic) + topic_qos(1)  <- 이게 원래 내용
-	packetlen = 2 + 2 + strlen(topic) + 2;///////= Variable Header(2) + MSB(1) + LSB(토픽길이)(1) + strlen(topic) + topic_qos(1) + time_based_filter(1)) <- 수정한 내용
-	packet->command = SUBSCRIBE | (1<<1);////////=Fixed Header 부분에서 SUBSCRIBE로 비트 설정하는부분(0010은 reserved로 고정) SUBSCRIBE = 1000 0000 | 0000 0010 = 1000 0010
+	packetlen = 2 + 2+strlen(topic) + 1;
+
+	packet->command = SUBSCRIBE | (1<<1);
 	packet->remaining_length = packetlen;
 	rc = _mosquitto_packet_alloc(packet);
 	if(rc){
@@ -188,9 +188,7 @@ int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topi
 
 	/* Payload */
 	_mosquitto_write_string(packet, topic, strlen(topic));
-	_mosquitto_write_byte(packet, topic_qos);///////////////=이부분은 안쓰긴 하지만 미래에 쓸 수도 있으므로 지울지 말지 일단 보류
-	//printf("%s %d %d %d~~~~!!\n\n",topic, topic_qos, topic_time_based_filter, packetlen);
-	_mosquitto_write_byte(packet, topic_time_based_filter);//////////////////=이 부분이 timebasedfilter 1byte 입력시키는부분
+	_mosquitto_write_byte(packet, topic_qos);
 
 #ifdef WITH_BROKER
 # ifdef WITH_BRIDGE

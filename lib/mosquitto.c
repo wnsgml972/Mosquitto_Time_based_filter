@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -19,7 +19,6 @@ Contributors:
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
-#include <pthread.h>
 #ifndef WIN32
 #include <sys/select.h>
 #include <sys/time.h>
@@ -527,12 +526,10 @@ static int _mosquitto_reconnect(struct mosquitto *mosq, bool blocking)
 
 #ifdef WITH_SOCKS
 	if(mosq->socks5_host){
-		//printf("여기1!\n");///=
 		rc = _mosquitto_socket_connect(mosq, mosq->socks5_host, mosq->socks5_port, mosq->bind_address, blocking);
 	}else
 #endif
 	{
-		//printf("여기2!\n");///=
 		rc = _mosquitto_socket_connect(mosq, mosq->host, mosq->port, mosq->bind_address, blocking);
 	}
 	if(rc>0){
@@ -541,12 +538,10 @@ static int _mosquitto_reconnect(struct mosquitto *mosq, bool blocking)
 
 #ifdef WITH_SOCKS
 	if(mosq->socks5_host){
-		//printf("여기3!\n");///=
 		return mosquitto__socks5_send(mosq);
 	}else
 #endif
-	{	
-		//printf("여기4!\n");///=
+	{
 		return _mosquitto_send_connect(mosq, mosq->keepalive, mosq->clean_session);
 	}
 }
@@ -630,14 +625,14 @@ int mosquitto_publish(struct mosquitto *mosq, int *mid, const char *topic, int p
 	}
 }
 
-int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos, int time_based_filter)
+int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos)
 {
 	if(!mosq) return MOSQ_ERR_INVAL;
 	if(mosq->sock == INVALID_SOCKET) return MOSQ_ERR_NO_CONN;
 
 	if(mosquitto_sub_topic_check(sub)) return MOSQ_ERR_INVAL;
 
-	return _mosquitto_send_subscribe(mosq, mid, sub, qos, time_based_filter);
+	return _mosquitto_send_subscribe(mosq, mid, sub, qos);
 }
 
 int mosquitto_unsubscribe(struct mosquitto *mosq, int *mid, const char *sub)
@@ -976,9 +971,10 @@ int mosquitto_loop(struct mosquitto *mosq, int timeout, int max_packets)
 				/* Fake write possible, to stimulate output write even though
 				 * we didn't ask for it, because at that point the publish or
 				 * other command wasn't present. */
-				FD_SET(mosq->sock, &writefds);
+				if(mosq->sock != INVALID_SOCKET)
+					FD_SET(mosq->sock, &writefds);
 			}
-			if(FD_ISSET(mosq->sock, &writefds)){
+			if(mosq->sock != INVALID_SOCKET && FD_ISSET(mosq->sock, &writefds)){
 #ifdef WITH_TLS
 				if(mosq->want_connect){
 					rc = mosquitto__socket_connect_tls(mosq);
@@ -1206,23 +1202,22 @@ int mosquitto_loop_write(struct mosquitto *mosq, int max_packets)
 
 bool mosquitto_want_write(struct mosquitto *mosq)
 {
+	bool result = false;
 	if(mosq->out_packet || mosq->current_out_packet){
-		return true;
-#ifdef WITH_TLS
-	}else if(mosq->ssl && mosq->want_write){
-		return true;
-#endif
-	}else{
-		return false;
+		result = true;
 	}
+#ifdef WITH_TLS
+	if(mosq->ssl){
+		if (mosq->want_write) {
+			result = true;
+		}else if(mosq->want_connect){
+			result = false;
+		}
+	}
+#endif
+	return result;
 }
-int mosquitto_timebased_set(struct mosquitto *mosq, int timebased) {
-	if (!mosq) return MOSQ_ERR_INVAL;
 
-	mosq->time_based_filter = timebased;
-	mosq->time_based_filter_timer = timebased;
-	return MOSQ_ERR_SUCCESS;
-}
 int mosquitto_opts_set(struct mosquitto *mosq, enum mosq_opt_t option, void *value)
 {
 	int ival;
@@ -1264,7 +1259,6 @@ void mosquitto_disconnect_callback_set(struct mosquitto *mosq, void (*on_disconn
 void mosquitto_publish_callback_set(struct mosquitto *mosq, void (*on_publish)(struct mosquitto *, void *, int))
 {
 	pthread_mutex_lock(&mosq->callback_mutex);
-
 	mosq->on_publish = on_publish;
 	pthread_mutex_unlock(&mosq->callback_mutex);
 }

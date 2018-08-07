@@ -1,4 +1,4 @@
-# Install script for directory: C:/Temp/mosquitto-1.4.14/man
+# Install script for directory: C:/TEMP/mosquitto-1.4.15/man
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,28 +34,28 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man1" TYPE FILE FILES
-    "C:/Temp/mosquitto-1.4.14/man/mosquitto_passwd.1"
-    "C:/Temp/mosquitto-1.4.14/man/mosquitto_pub.1"
-    "C:/Temp/mosquitto-1.4.14/man/mosquitto_sub.1"
+    "C:/TEMP/mosquitto-1.4.15/man/mosquitto_passwd.1"
+    "C:/TEMP/mosquitto-1.4.15/man/mosquitto_pub.1"
+    "C:/TEMP/mosquitto-1.4.15/man/mosquitto_sub.1"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man3" TYPE FILE FILES "C:/Temp/mosquitto-1.4.14/man/libmosquitto.3")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man3" TYPE FILE FILES "C:/TEMP/mosquitto-1.4.15/man/libmosquitto.3")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man5" TYPE FILE FILES "C:/Temp/mosquitto-1.4.14/man/mosquitto.conf.5")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man5" TYPE FILE FILES "C:/TEMP/mosquitto-1.4.15/man/mosquitto.conf.5")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man7" TYPE FILE FILES
-    "C:/Temp/mosquitto-1.4.14/man/mosquitto-tls.7"
-    "C:/Temp/mosquitto-1.4.14/man/mqtt.7"
+    "C:/TEMP/mosquitto-1.4.15/man/mosquitto-tls.7"
+    "C:/TEMP/mosquitto-1.4.15/man/mqtt.7"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man8" TYPE FILE FILES "C:/Temp/mosquitto-1.4.14/man/mosquitto.8")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man8" TYPE FILE FILES "C:/TEMP/mosquitto-1.4.15/man/mosquitto.8")
 endif()
 

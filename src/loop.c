@@ -1,5 +1,5 @@
-/*수정
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+/*
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -15,12 +15,13 @@ Contributors:
 */
 
 #define _GNU_SOURCE
-#include <pthread.h>
+
 #include <config.h>
 
 #include <assert.h>
 #ifndef WIN32
 #include <poll.h>
+#include <unistd.h>
 #else
 #include <process.h>
 #include <winsock2.h>
@@ -31,7 +32,6 @@ Contributors:
 #include <signal.h>
 #include <stdio.h>
 #include <string.h>
-
 #ifndef WIN32
 #  include <sys/socket.h>
 #endif
@@ -47,9 +47,7 @@ Contributors:
 #include <time_mosq.h>
 #include <util_mosq.h>
 
-
 extern bool flag_reload;
-
 #ifdef WITH_PERSISTENCE
 extern bool flag_db_backup;
 #endif
@@ -57,11 +55,6 @@ extern bool flag_tree_print;
 extern int run;
 #ifdef WITH_SYS_TREE
 extern int g_clients_expired;
-///////===########################
-extern unsigned long g_pub_msgs_received;
-extern unsigned long g_pub_msgs_sent;
-extern unsigned int connected_count;
-extern unsigned long g_msgs_dropped;
 #endif
 
 static void loop_handle_reads_writes(struct mosquitto_db *db, struct pollfd *pollfds);
@@ -95,8 +88,7 @@ static void temp__expire_websockets_clients(struct mosquitto_db *db)
 	}
 }
 #endif
-//===================================================================================================================================
-//mainloop 메인루프 나오게
+
 int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int listensock_count, int listener_max)
 {
 #ifdef WITH_SYS_TREE
@@ -124,10 +116,7 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 	time_t expiration_check_time = 0;
 	time_t last_timeout_check = 0;
 	char *id;
-	///////====
-	char buf[10];
-	time_t workload_msg_time = time(NULL);
-	time_t tmp_time;
+
 #ifndef WIN32
 	sigemptyset(&sigblock);
 	sigaddset(&sigblock, SIGINT);
@@ -136,15 +125,11 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 #endif
 
 #ifdef WIN32
-	pollfd_max = 10240;// _getmaxstdio();
+	pollfd_max = _getmaxstdio();
 #else
-	pollfd_max = getdtablesize();
+	pollfd_max = sysconf(_SC_OPEN_MAX);
 #endif
 
-
-
-	mosquitto_time_based_filter_start();///////=★★★★mosquitto_time_based_filter시작! ★★★★
-	
 	pollfds = _mosquitto_malloc(sizeof(struct pollfd)*pollfd_max);
 	if(!pollfds){
 		_mosquitto_log_printf(NULL, MOSQ_LOG_ERR, "Error: Out of memory.");
@@ -156,26 +141,10 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 	}
 
 	while(run){
-		/////////////=====
-		if ((tmp_time = time(NULL)) - workload_msg_time > 1) {
-
-			snprintf(buf, 10, "%lu", g_msgs_dropped);
-			mqtt3_db_messages_easy_queue(db, NULL, "$SYS/broker/workload/dropped", 2, strlen(buf), buf, 1);
-
-			workload_msg_time = tmp_time;
-			snprintf(buf, 10, "%lu", g_pub_msgs_received);
-			mqtt3_db_messages_easy_queue(db, NULL, "$SYS/broker/workload/received", 2, strlen(buf), buf, 1);
-
-			snprintf(buf, 10, "%lu", g_pub_msgs_sent);
-			mqtt3_db_messages_easy_queue(db, NULL, "$SYS/broker/workload/sent", 2, strlen(buf), buf, 1);
-
-			snprintf(buf, 10, "%lu", HASH_CNT(hh_sock, db->contexts_by_sock));
-			mqtt3_db_messages_easy_queue(db, NULL, "$SYS/broker/workload/connected", 2, strlen(buf), buf, 1);
-		}
 		mosquitto__free_disused_contexts(db);
 #ifdef WITH_SYS_TREE
 		if(db->config->sys_interval > 0){
-			mqtt3_db_sys_update(db, db->config->sys_interval, start_time);//////////////////////이부분은 시스템적으로 주기적으로 특정토픽 업데이트 할 수 있는 부분
+			mqtt3_db_sys_update(db, db->config->sys_interval, start_time);
 		}
 #endif
 
@@ -190,7 +159,7 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 		}
 
 		now_time = time(NULL);
-	
+
 		time_count = 0;
 		HASH_ITER(hh_sock, db->contexts_by_sock, context, ctxt_tmp){
 			if(time_count > 0){
@@ -217,25 +186,25 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 					}
 				}
 #endif
-				
+
 				/* Local bridges never time out in this fashion. */
 				if(!(context->keepalive)
 						|| context->bridge
 						|| now - context->last_msg_in < (time_t)(context->keepalive)*3/2){
-					if (mqtt3_db_message_write(db, context) == MOSQ_ERR_SUCCESS) {////////////////=★★★★★★★★★★★★★★★★★★메세지 보냄 PUB 아닌것들도 보냄★★★★★★★★★★★★
+
+					if(mqtt3_db_message_write(db, context) == MOSQ_ERR_SUCCESS){
 						pollfds[pollfd_index].fd = context->sock;
 						pollfds[pollfd_index].events = POLLIN;
 						pollfds[pollfd_index].revents = 0;
-						if (context->current_out_packet || context->state == mosq_cs_connect_pending || context->ws_want_write) {
+						if(context->current_out_packet || context->state == mosq_cs_connect_pending || context->ws_want_write){
 							pollfds[pollfd_index].events |= POLLOUT;
 							context->ws_want_write = false;
 						}
 						context->pollfd_index = pollfd_index;
 						pollfd_index++;
-					}
-					else {
+					}else{
 						do_disconnect(db, context);
-					}					
+					}
 				}else{
 					if(db->config->connection_messages == true){
 						if(context->id){
@@ -388,7 +357,7 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 		if(fdcount == -1){
 			_mosquitto_log_printf(NULL, MOSQ_LOG_ERR, "Error in poll: %s.", strerror(errno));
 		}else{
-			loop_handle_reads_writes(db, pollfds);/////////////=이부분에서 메세지 읽고 쓴다.
+			loop_handle_reads_writes(db, pollfds);
 
 			for(i=0; i<listensock_count; i++){
 				if(pollfds[i].revents & (POLLIN | POLLPRI)){
@@ -421,7 +390,7 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 #endif
 		if(flag_reload){
 			_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Reloading config.");
-			mqtt3_config_read(db->config, true);
+			mqtt3_config_read(db, db->config, true);
 			mosquitto_security_cleanup(db, true);
 			mosquitto_security_init(db, true);
 			mosquitto_security_apply(db);
@@ -456,7 +425,7 @@ int mosquitto_main_loop(struct mosquitto_db *db, mosq_sock_t *listensock, int li
 void do_disconnect(struct mosquitto_db *db, struct mosquitto *context)
 {
 	char *id;
-	printf("[do_disconnect] : %s %d\n",context->id, context->time_based_filter);
+
 	if(context->state == mosq_cs_disconnected){
 		return;
 	}
@@ -511,26 +480,19 @@ static void loop_handle_reads_writes(struct mosquitto_db *db, struct pollfd *pol
 	struct mosquitto *context, *ctxt_tmp;
 	int err;
 	socklen_t len;
-	/*
-	HASH_ITER(hh,head,el,tmp)
-	for((context)=(db->contexts_by_sock), (*(char**)(&(ctxt_tmp)))=(char*)((db->contexts_by_sock)?(db->contexts_by_sock)->hh_sock.next:NULL);       \
-			context; 
-			(context)=(ctxt_tmp),(*(char**)(&(ctxt_tmp)))=(char*)((ctxt_tmp)?(ctxt_tmp)->hh_sock.next:NULL)) 
-	*/
-	HASH_ITER(hh_sock, db->contexts_by_sock, context, ctxt_tmp){////////context에 db->contexts_by_sock을 넣는데 for문을 돌다가 마지막꺼를 넣어줌?
-		//보니까 딱 한번씩만 도는데?
-		//이 부분 역할이 무엇일까??
+
+	HASH_ITER(hh_sock, db->contexts_by_sock, context, ctxt_tmp){
 		if(context->pollfd_index < 0){
 			continue;
 		}
 
 		assert(pollfds[context->pollfd_index].fd == context->sock);
 
-#ifdef WITH_WEBSOCKETS////웹소켓 사용시
+#ifdef WITH_WEBSOCKETS
 		if(context->wsi){
 			struct lws_pollfd wspoll;
 			wspoll.fd = pollfds[context->pollfd_index].fd;
-			wspoll.events = pollfds[context->pollfd_index].events;///////=pollfds는 loop를 돌면서 alive message을 클라이언트에서 받은경우 넣어주는 임시적인 소켓 배열
+			wspoll.events = pollfds[context->pollfd_index].events;
 			wspoll.revents = pollfds[context->pollfd_index].revents;
 			lws_service_fd(lws_get_context(context->wsi), &wspoll);
 			continue;
@@ -554,17 +516,15 @@ static void loop_handle_reads_writes(struct mosquitto_db *db, struct pollfd *pol
 					do_disconnect(db, context);
 					continue;
 				}
-			}			
-			printf("write전!\n");
+			}
 			if(_mosquitto_packet_write(context)){
 				do_disconnect(db, context);
 				continue;
 			}
-			printf("write후!\n");
 		}
 	}
 
-	HASH_ITER(hh_sock, db->contexts_by_sock, context, ctxt_tmp){//////////=이 부분은 for문을 돌면서 읽을게 있으면 읽어옴
+	HASH_ITER(hh_sock, db->contexts_by_sock, context, ctxt_tmp){
 		if(context->pollfd_index < 0){
 			continue;
 		}
@@ -582,7 +542,7 @@ static void loop_handle_reads_writes(struct mosquitto_db *db, struct pollfd *pol
 		if(pollfds[context->pollfd_index].revents & POLLIN){
 #endif
 			do{
-				if(_mosquitto_packet_read(db, context)){///////////////=★★★★★★★★★★★★★★★★★★receive함★★★★★★
+				if(_mosquitto_packet_read(db, context)){
 					do_disconnect(db, context);
 					continue;
 				}

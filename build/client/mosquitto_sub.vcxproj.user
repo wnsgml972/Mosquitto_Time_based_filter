@@ -1,23 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>-t 'topic'</LocalDebuggerCommandArguments>
-    <LocalDebuggerEnvironment>PATH=C:\Temp\mosquitto-1.4.14\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
+    <LocalDebuggerEnvironment>PATH=C:\TEMP\mosquitto-1.4.15\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
-    <LocalDebuggerCommandArguments>-t 'topic'</LocalDebuggerCommandArguments>
-    <LocalDebuggerEnvironment>PATH=C:\Temp\mosquitto-1.4.14\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>-t "#" -F 250</LocalDebuggerCommandArguments>
-    <LocalDebuggerEnvironment>PATH=C:\Temp\mosquitto-1.4.14\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
-    <LocalDebuggerCommandArguments>-t 'topic'</LocalDebuggerCommandArguments>
-    <LocalDebuggerEnvironment>PATH=C:\Temp\mosquitto-1.4.14\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-t 안녕 -q 2</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

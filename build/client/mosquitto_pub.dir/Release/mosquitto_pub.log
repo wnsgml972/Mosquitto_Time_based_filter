@@ -1,9 +1,0 @@
-﻿  pub_client.c
-c:\temp\mosquitto-1.4.14\client\client_shared.h(33): warning C4005: 'HILIGHT_TIME': 매크로 재정의
-  c:\temp\mosquitto-1.4.14\client\client_shared.h(33): note: 명령줄 인수: 'HILIGHT_TIME'의 이전 정의를 참조하십시오.
-  client_shared.c
-c:\temp\mosquitto-1.4.14\client\client_shared.h(33): warning C4005: 'HILIGHT_TIME': 매크로 재정의
-  c:\temp\mosquitto-1.4.14\client\client_shared.h(33): note: 명령줄 인수: 'HILIGHT_TIME'의 이전 정의를 참조하십시오.
-C:\Temp\mosquitto-1.4.14\client\client_shared.c(867): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-  코드를 생성하고 있습니다...
-  mosquitto_pub.vcxproj -> C:\Temp\mosquitto-1.4.14\build\client\Release\mosquitto_pub.exe

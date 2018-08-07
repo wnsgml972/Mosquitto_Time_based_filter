@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@ and the Eclipse Distribution License is available at
 Contributors:
    Roger Light - initial implementation and documentation.
 */
+
 #include <assert.h>
 #include <errno.h>
 #include <stdio.h>
@@ -28,11 +29,6 @@ Contributors:
 
 #include <mosquitto.h>
 #include "client_shared.h"
-
-#ifndef HILIGHT_TIME
-#	include <time.h>
-#endif
-
 
 bool process_messages = true;
 int msg_count = 0;
@@ -58,9 +54,8 @@ void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquit
 
 	if(cfg->verbose){
 		if(message->payloadlen){
-			//printf("%s ", message->topic);
-			fwrite(message->payload, 1, message->payloadlen, stdout);		
-			printf("dsfdsf");
+			printf("%s ", message->topic);
+			fwrite(message->payload, 1, message->payloadlen, stdout);
 			if(cfg->eol){
 				printf("\n");
 			}
@@ -73,11 +68,6 @@ void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquit
 	}else{
 		if(message->payloadlen){
 			fwrite(message->payload, 1, message->payloadlen, stdout);
-#ifndef HILIGHT_TIME
-			time_t t = time(NULL);
-			struct tm tm = *localtime(&t);
-			printf(" time: %d:%d:%d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
-#endif
 			if(cfg->eol){
 				printf("\n");
 			}
@@ -91,7 +81,6 @@ void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquit
 			mosquitto_disconnect(mosq);
 		}
 	}
-
 }
 
 void my_connect_callback(struct mosquitto *mosq, void *obj, int result)
@@ -103,9 +92,8 @@ void my_connect_callback(struct mosquitto *mosq, void *obj, int result)
 	cfg = (struct mosq_config *)obj;
 
 	if(!result){
-		//printf("%d개의 토픽 구독중!\n", cfg->topic_count);
 		for(i=0; i<cfg->topic_count; i++){
-			mosquitto_subscribe(mosq, NULL, cfg->topics[i], cfg->qos, cfg->time_based_filter);
+			mosquitto_subscribe(mosq, NULL, cfg->topics[i], cfg->qos);
 		}
 	}else{
 		if(result && !cfg->quiet){
@@ -227,6 +215,7 @@ int main(int argc, char *argv[])
 	struct mosq_config cfg;
 	struct mosquitto *mosq = NULL;
 	int rc;
+	
 	rc = client_config_load(&cfg, CLIENT_SUB, argc, argv);
 	if(rc){
 		client_config_cleanup(&cfg);
@@ -246,7 +235,6 @@ int main(int argc, char *argv[])
 	}
 
 	mosq = mosquitto_new(cfg.id, cfg.clean_session, &cfg);
-	
 	if(!mosq){
 		switch(errno){
 			case ENOMEM:
@@ -272,6 +260,7 @@ int main(int argc, char *argv[])
 	rc = client_connect(mosq, &cfg);
 	if(rc) return rc;
 
+
 	rc = mosquitto_loop_forever(mosq, -1, 1);
 
 	mosquitto_destroy(mosq);
@@ -285,3 +274,4 @@ int main(int argc, char *argv[])
 	}
 	return rc;
 }
+

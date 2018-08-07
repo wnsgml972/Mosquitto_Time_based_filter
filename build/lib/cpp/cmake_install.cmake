@@ -1,4 +1,4 @@
-# Install script for directory: C:/Temp/mosquitto-1.4.14/lib/cpp
+# Install script for directory: C:/TEMP/mosquitto-1.4.15/lib/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,17 +34,17 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/Temp/mosquitto-1.4.14/build/lib/cpp/Debug/mosquittopp.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/TEMP/mosquitto-1.4.15/build/lib/cpp/Debug/mosquittopp.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/Temp/mosquitto-1.4.14/build/lib/cpp/Release/mosquittopp.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/TEMP/mosquitto-1.4.15/build/lib/cpp/Release/mosquittopp.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/Temp/mosquitto-1.4.14/build/lib/cpp/MinSizeRel/mosquittopp.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/TEMP/mosquitto-1.4.15/build/lib/cpp/MinSizeRel/mosquittopp.dll")
   elseif("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/Temp/mosquitto-1.4.14/build/lib/cpp/RelWithDebInfo/mosquittopp.dll")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE SHARED_LIBRARY FILES "C:/TEMP/mosquitto-1.4.15/build/lib/cpp/RelWithDebInfo/mosquittopp.dll")
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/Temp/mosquitto-1.4.14/lib/cpp/mosquittopp.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/TEMP/mosquitto-1.4.15/lib/cpp/mosquittopp.h")
 endif()
 

@@ -1,4 +1,4 @@
-The system is: Windows - 10.0.16299 - AMD64
+The system is: Windows - 10.0.17134 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler:  
 Build flags: 
@@ -6,43 +6,43 @@ Id flags:
 
 The output was:
 0
-.NET Framework�� Microsoft (R) Build Engine ���� 15.5.180.51428
+Microsoft (R) Build Engine ���� 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-���� ����: 2018-02-06 ���� 1:42:34
-1 ����� "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
+���� ����: 2018-07-23 ���� 5:25:58
+1 ����� "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
 PrepareForBuild:
   "Debug\" ���͸��� ����� �ֽ��ϴ�.
   "Debug\CompilerIdC.tlog\" ���͸��� ����� �ֽ��ϴ�.
 InitializeBuildStatus:
   "AlwaysCreate"��(��) �����Ǿ��� ������ "Debug\CompilerIdC.tlog\unsuccessfulbuild"��(��) ����� �ֽ��ϴ�.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue CMakeCCompilerId.c
   CMakeCCompilerId.c
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
-  CompilerIdC.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdC\.\CompilerIdC.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdC.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCCompilerId.obj
+  CompilerIdC.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdC\.\CompilerIdC.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
   :VCEnd
-  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\Hostx86\x86\cl.exe
+  CMAKE_C_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\cl.exe
 FinalizeBuildStatus:
   "Debug\CompilerIdC.tlog\unsuccessfulbuild" ������ �����ϰ� �ֽ��ϴ�.
   "Debug\CompilerIdC.tlog\CompilerIdC.lastbuildstate"�� ����(touching)�ϰ� �ֽ��ϴ�.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdC\CompilerIdC.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
 
 �����߽��ϴ�.
     ��� 0��
     ���� 0��
 
-��� �ð�: 00:00:01.14
+��� �ð�: 00:00:01.20
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
 
-The C compiler identification is MSVC, found in "C:/Temp/mosquitto-1.4.14/build/CMakeFiles/3.10.2/CompilerIdC/CompilerIdC.exe"
+The C compiler identification is MSVC, found in "C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/3.10.2/CompilerIdC/CompilerIdC.exe"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler:  
@@ -51,234 +51,239 @@ Id flags:
 
 The output was:
 0
-.NET Framework�� Microsoft (R) Build Engine ���� 15.5.180.51428
+Microsoft (R) Build Engine ���� 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-���� ����: 2018-02-06 ���� 1:42:36
-1 ����� "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
+���� ����: 2018-07-23 ���� 5:26:00
+1 ����� "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ(�⺻ ���)�Դϴ�.
 PrepareForBuild:
   "Debug\" ���͸��� ����� �ֽ��ϴ�.
   "Debug\CompilerIdCXX.tlog\" ���͸��� ����� �ֽ��ϴ�.
 InitializeBuildStatus:
   "AlwaysCreate"��(��) �����Ǿ��� ������ "Debug\CompilerIdCXX.tlog\unsuccessfulbuild"��(��) ����� �ֽ��ϴ�.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /nologo /W0 /WX- /diagnostics:classic /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue CMakeCXXCompilerId.cpp
   CMakeCXXCompilerId.cpp
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
-  CompilerIdCXX.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdCXX\.\CompilerIdCXX.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:".\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\CompilerIdCXX.lib" /MACHINE:X86 /SAFESEH Debug\CMakeCXXCompilerId.obj
+  CompilerIdCXX.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdCXX\.\CompilerIdCXX.exe
 PostBuildEvent:
   for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
   :VCEnd
-  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\Hostx86\x86\cl.exe
+  CMAKE_CXX_COMPILER=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\cl.exe
 FinalizeBuildStatus:
   "Debug\CompilerIdCXX.tlog\unsuccessfulbuild" ������ �����ϰ� �ֽ��ϴ�.
   "Debug\CompilerIdCXX.tlog\CompilerIdCXX.lastbuildstate"�� ����(touching)�ϰ� �ֽ��ϴ�.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\3.10.2\CompilerIdCXX\CompilerIdCXX.vcxproj" ������Ʈ�� �����߽��ϴ�(�⺻ ���).
 
 �����߽��ϴ�.
     ��� 0��
     ���� 0��
 
-��� �ð�: 00:00:01.19
+��� �ð�: 00:00:00.92
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
 
-The CXX compiler identification is MSVC, found in "C:/Temp/mosquitto-1.4.14/build/CMakeFiles/3.10.2/CompilerIdCXX/CompilerIdCXX.exe"
+The CXX compiler identification is MSVC, found in "C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/3.10.2/CompilerIdCXX/CompilerIdCXX.exe"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_960db.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_3683a.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:37
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_960db.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:01
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_3683a.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_960db.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_960db.dir\Debug\cmTC_960db.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_3683a.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_3683a.dir\Debug\cmTC_3683a.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_960db.dir\Debug\cmTC_960db.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_3683a.dir\Debug\cmTC_3683a.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_960db.dir\Debug\\" /Fd"cmTC_960db.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\testCCompiler.c"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3683a.dir\Debug\\" /Fd"cmTC_3683a.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_960db.dir\Debug\\" /Fd"cmTC_960db.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\testCCompiler.c"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_3683a.dir\Debug\\" /Fd"cmTC_3683a.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\testCCompiler.c"
   testCCompiler.c
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_960db.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_960db.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_960db.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_960db.dir\Debug\testCCompiler.obj
-  cmTC_960db.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_960db.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_3683a.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_3683a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_3683a.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_3683a.dir\Debug\testCCompiler.obj
+  cmTC_3683a.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_3683a.exe
+  cmTC_3683a.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_3683a.pdb (Full PDB)
 FinalizeBuildStatus:
-  "cmTC_960db.dir\Debug\cmTC_960db.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
-  "cmTC_960db.dir\Debug\cmTC_960db.tlog\cmTC_960db.lastbuildstate"에 연결(touching)하고 있습니다.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_960db.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+  "cmTC_3683a.dir\Debug\cmTC_3683a.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_3683a.dir\Debug\cmTC_3683a.tlog\cmTC_3683a.lastbuildstate"에 연결(touching)하고 있습니다.
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_3683a.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
 
 빌드했습니다.
     경고 0개
     오류 0개
 
-경과 시간: 00:00:01.23
+경과 시간: 00:00:01.15
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_a3241.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_2a1a9.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:39
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_a3241.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:02
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_2a1a9.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_a3241.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_a3241.dir\Debug\cmTC_a3241.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_2a1a9.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_2a1a9.dir\Debug\cmTC_2a1a9.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_a3241.dir\Debug\cmTC_a3241.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_2a1a9.dir\Debug\cmTC_2a1a9.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a3241.dir\Debug\\" /Fd"cmTC_a3241.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2a1a9.dir\Debug\\" /Fd"cmTC_2a1a9.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_a3241.dir\Debug\\" /Fd"cmTC_a3241.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_2a1a9.dir\Debug\\" /Fd"cmTC_2a1a9.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCCompilerABI.c"
   CMakeCCompilerABI.c
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_a3241.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_a3241.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_a3241.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_a3241.dir\Debug\CMakeCCompilerABI.obj
-  cmTC_a3241.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_a3241.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_2a1a9.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_2a1a9.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_2a1a9.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_2a1a9.dir\Debug\CMakeCCompilerABI.obj
+  cmTC_2a1a9.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_2a1a9.exe
+  cmTC_2a1a9.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_2a1a9.pdb (Full PDB)
 FinalizeBuildStatus:
-  "cmTC_a3241.dir\Debug\cmTC_a3241.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
-  "cmTC_a3241.dir\Debug\cmTC_a3241.tlog\cmTC_a3241.lastbuildstate"에 연결(touching)하고 있습니다.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_a3241.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+  "cmTC_2a1a9.dir\Debug\cmTC_2a1a9.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_2a1a9.dir\Debug\cmTC_2a1a9.tlog\cmTC_2a1a9.lastbuildstate"에 연결(touching)하고 있습니다.
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_2a1a9.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
 
 빌드했습니다.
     경고 0개
     오류 0개
 
-경과 시간: 00:00:01.19
+경과 시간: 00:00:00.83
 
 
 Determining if the CXX compiler works passed with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_afb66.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_670f3.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:40
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_afb66.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:03
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_670f3.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_afb66.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_afb66.dir\Debug\cmTC_afb66.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_670f3.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_670f3.dir\Debug\cmTC_670f3.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_afb66.dir\Debug\cmTC_afb66.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_670f3.dir\Debug\cmTC_670f3.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_afb66.dir\Debug\\" /Fd"cmTC_afb66.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_670f3.dir\Debug\\" /Fd"cmTC_670f3.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_afb66.dir\Debug\\" /Fd"cmTC_afb66.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_670f3.dir\Debug\\" /Fd"cmTC_670f3.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
   testCXXCompiler.cxx
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_afb66.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_afb66.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_afb66.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_afb66.dir\Debug\testCXXCompiler.obj
-  cmTC_afb66.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_afb66.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_670f3.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_670f3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_670f3.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_670f3.dir\Debug\testCXXCompiler.obj
+  cmTC_670f3.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_670f3.exe
+  cmTC_670f3.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_670f3.pdb (Full PDB)
 FinalizeBuildStatus:
-  "cmTC_afb66.dir\Debug\cmTC_afb66.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
-  "cmTC_afb66.dir\Debug\cmTC_afb66.tlog\cmTC_afb66.lastbuildstate"에 연결(touching)하고 있습니다.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_afb66.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+  "cmTC_670f3.dir\Debug\cmTC_670f3.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_670f3.dir\Debug\cmTC_670f3.tlog\cmTC_670f3.lastbuildstate"에 연결(touching)하고 있습니다.
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_670f3.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
 
 빌드했습니다.
     경고 0개
     오류 0개
 
-경과 시간: 00:00:01.25
+경과 시간: 00:00:00.90
 
 
 Detecting CXX compiler ABI info compiled with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_0b0e5.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_21d5d.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:42
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_0b0e5.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:05
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_21d5d.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_0b0e5.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_0b0e5.dir\Debug\cmTC_0b0e5.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_21d5d.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_21d5d.dir\Debug\cmTC_21d5d.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_0b0e5.dir\Debug\cmTC_0b0e5.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_21d5d.dir\Debug\cmTC_21d5d.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0b0e5.dir\Debug\\" /Fd"cmTC_0b0e5.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_21d5d.dir\Debug\\" /Fd"cmTC_21d5d.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_0b0e5.dir\Debug\\" /Fd"cmTC_0b0e5.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_21d5d.dir\Debug\\" /Fd"cmTC_21d5d.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CMakeCXXCompilerABI.cpp"
   CMakeCXXCompilerABI.cpp
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_0b0e5.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_0b0e5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_0b0e5.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_0b0e5.dir\Debug\CMakeCXXCompilerABI.obj
-  cmTC_0b0e5.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_0b0e5.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_21d5d.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_21d5d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_21d5d.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_21d5d.dir\Debug\CMakeCXXCompilerABI.obj
+  cmTC_21d5d.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_21d5d.exe
+  cmTC_21d5d.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_21d5d.pdb (Full PDB)
 FinalizeBuildStatus:
-  "cmTC_0b0e5.dir\Debug\cmTC_0b0e5.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
-  "cmTC_0b0e5.dir\Debug\cmTC_0b0e5.tlog\cmTC_0b0e5.lastbuildstate"에 연결(touching)하고 있습니다.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_0b0e5.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+  "cmTC_21d5d.dir\Debug\cmTC_21d5d.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_21d5d.dir\Debug\cmTC_21d5d.tlog\cmTC_21d5d.lastbuildstate"에 연결(touching)하고 있습니다.
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_21d5d.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
 
 빌드했습니다.
     경고 0개
     오류 0개
 
-경과 시간: 00:00:01.20
+경과 시간: 00:00:01.03
 
 
 
 
 Detecting CXX [] compiler features compiled with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_d4e4b.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_d9860.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:44
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_d4e4b.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:06
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_d9860.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_d4e4b.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_d4e4b.dir\Debug\cmTC_d4e4b.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_d9860.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_d9860.dir\Debug\cmTC_d9860.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_d4e4b.dir\Debug\cmTC_d4e4b.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_d9860.dir\Debug\cmTC_d9860.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d4e4b.dir\Debug\\" /Fd"cmTC_d4e4b.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\feature_tests.cxx"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d9860.dir\Debug\\" /Fd"cmTC_d9860.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\feature_tests.cxx"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d4e4b.dir\Debug\\" /Fd"cmTC_d4e4b.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\feature_tests.cxx"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d9860.dir\Debug\\" /Fd"cmTC_d9860.dir\Debug\vc141.pdb" /Gd /TP /analyze- /errorReport:queue "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\feature_tests.cxx"
   feature_tests.cxx
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_d4e4b.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_d4e4b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_d4e4b.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_d4e4b.dir\Debug\feature_tests.obj
-  cmTC_d4e4b.vcxproj -> C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_d4e4b.exe
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_d9860.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_d9860.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_d9860.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_d9860.dir\Debug\feature_tests.obj
+  cmTC_d9860.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_d9860.exe
+  cmTC_d9860.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_d9860.pdb (Full PDB)
 FinalizeBuildStatus:
-  "cmTC_d4e4b.dir\Debug\cmTC_d4e4b.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
-  "cmTC_d4e4b.dir\Debug\cmTC_d4e4b.tlog\cmTC_d4e4b.lastbuildstate"에 연결(touching)하고 있습니다.
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_d4e4b.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
+  "cmTC_d9860.dir\Debug\cmTC_d9860.tlog\unsuccessfulbuild" 파일을 삭제하고 있습니다.
+  "cmTC_d9860.dir\Debug\cmTC_d9860.tlog\cmTC_d9860.lastbuildstate"에 연결(touching)하고 있습니다.
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_d9860.vcxproj" 프로젝트를 빌드했습니다(기본 대상).
 
 빌드했습니다.
     경고 0개
     오류 0개
 
-경과 시간: 00:00:01.23
+경과 시간: 00:00:00.84
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2014-2018 Roger Light <roger@atchoo.org>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -201,6 +201,12 @@ static int callback_mqtt(struct libwebsocket_context *context,
 				mosq->ws_context = context;
 #endif
 				mosq->wsi = wsi;
+				if(in){
+					mosq->ssl = (SSL *)in;
+					if(!mosq->listener->ssl_ctx){
+						mosq->listener->ssl_ctx = SSL_get_SSL_CTX(mosq->ssl);
+					}
+				}
 				u->mosq = mosq;
 			}else{
 				return -1;
@@ -234,6 +240,7 @@ static int callback_mqtt(struct libwebsocket_context *context,
 					mosq->pollfd_index = -1;
 				}
 				mosq->wsi = NULL;
+				mosq->ssl = NULL;
 				do_disconnect(db, mosq);
 			}
 			break;
@@ -243,7 +250,7 @@ static int callback_mqtt(struct libwebsocket_context *context,
 				return -1;
 			}
 			mosq = u->mosq;
-			if(!mosq || mosq->state == mosq_cs_disconnect_ws || mosq->state == mosq_cs_disconnecting){
+			if(!mosq){
 				return -1;
 			}
 
@@ -271,22 +278,34 @@ static int callback_mqtt(struct libwebsocket_context *context,
 					packet->pos += LWS_SEND_BUFFER_PRE_PADDING;
 				}
 				count = libwebsocket_write(wsi, &packet->payload[packet->pos], packet->to_process, LWS_WRITE_BINARY);
-				if (count >30 && packet->to_process > 30 && count == packet->to_process) { //수정수정수정
-					g_pub_msgs_sent++;
-				}
-
 #ifdef LWS_IS_OLD
 				/* lws < 1.3 doesn't return a valid count, assume everything sent. */
 				count = packet->to_process;
 #endif
 				if(count < 0){
+					if (mosq->state == mosq_cs_disconnect_ws || mosq->state == mosq_cs_disconnecting){
+						return -1;
+					}
 					return 0;
 				}
+#ifdef WITH_SYS_TREE
+				g_bytes_sent += count;
+#endif
 				packet->to_process -= count;
 				packet->pos += count;
 				if(packet->to_process > 0){
+					if (mosq->state == mosq_cs_disconnect_ws || mosq->state == mosq_cs_disconnecting){
+						return -1;
+					}
 					break;
 				}
+
+#ifdef WITH_SYS_TREE
+				g_msgs_sent++;
+				if(((packet->command)&0xF6) == PUBLISH){
+					g_pub_msgs_sent++;
+				}
+#endif
 
 				/* Free data and reset values */
 				mosq->current_out_packet = mosq->out_packet;
@@ -301,6 +320,9 @@ static int callback_mqtt(struct libwebsocket_context *context,
 				_mosquitto_free(packet);
 
 				mosq->next_msg_out = mosquitto_time() + mosq->keepalive;
+			}
+			if (mosq->state == mosq_cs_disconnect_ws || mosq->state == mosq_cs_disconnecting){
+				return -1;
 			}
 			if(mosq->current_out_packet){
 				libwebsocket_callback_on_writable(mosq->ws_context, mosq->wsi);
@@ -383,7 +405,12 @@ static int callback_mqtt(struct libwebsocket_context *context,
 
 				mosq->last_msg_in = mosquitto_time();
 
-				if(rc){
+				if(rc && (mosq->out_packet || mosq->current_out_packet)) {
+					if(mosq->state != mosq_cs_disconnecting){
+						mosq->state = mosq_cs_disconnect_ws;
+					}
+					libwebsocket_callback_on_writable(mosq->ws_context, mosq->wsi);
+				} else if (rc) {
 					do_disconnect(db, mosq);
 					return -1;
 				}

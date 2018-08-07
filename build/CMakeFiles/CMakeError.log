@@ -1,40 +1,40 @@
 Determining if the function getaddrinfo_a exists in the anl failed with the following output:
-Change Dir: C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp
+Change Dir: C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_bbfd3.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
-.NET Framework용 Microsoft (R) Build Engine 버전 15.5.180.51428
+Run Build Command:"C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/MSBuild/15.0/Bin/MSBuild.exe" "cmTC_ddd65.vcxproj" "/p:Configuration=Debug" "/p:VisualStudioVersion=15.0"
+Microsoft (R) Build Engine 버전 15.1.548.43366
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2018-02-06 오후 1:42:46
-1 노드의 "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_bbfd3.vcxproj" 프로젝트(기본 대상)입니다.
+빌드 시작: 2018-07-23 오후 5:26:07
+1 노드의 "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_ddd65.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
-  "cmTC_bbfd3.dir\Debug\" 디렉터리를 만들고 있습니다.
-  "C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
-  "cmTC_bbfd3.dir\Debug\cmTC_bbfd3.tlog\" 디렉터리를 만들고 있습니다.
+  "cmTC_ddd65.dir\Debug\" 디렉터리를 만들고 있습니다.
+  "C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\" 디렉터리를 만들고 있습니다.
+  "cmTC_ddd65.dir\Debug\cmTC_ddd65.tlog\" 디렉터리를 만들고 있습니다.
 InitializeBuildStatus:
-  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_bbfd3.dir\Debug\cmTC_bbfd3.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
+  "AlwaysCreate"이(가) 지정되었기 때문에 "cmTC_ddd65.dir\Debug\cmTC_ddd65.tlog\unsuccessfulbuild"을(를) 만들고 있습니다.
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=getaddrinfo_a /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bbfd3.dir\Debug\\" /Fd"cmTC_bbfd3.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CheckFunctionExists.c"
-  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.12.25835
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\CL.exe /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=getaddrinfo_a /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ddd65.dir\Debug\\" /Fd"cmTC_ddd65.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CheckFunctionExists.c"
+  x86용 Microsoft (R) C/C++ 최적화 컴파일러 버전 19.10.25017
   Copyright (c) Microsoft Corporation. All rights reserved.
   
-  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=getaddrinfo_a /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_bbfd3.dir\Debug\\" /Fd"cmTC_bbfd3.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CheckFunctionExists.c"
+  cl /c /Zi /W3 /WX- /diagnostics:classic /Od /Ob0 /Oy- /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=getaddrinfo_a /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ddd65.dir\Debug\\" /Fd"cmTC_ddd65.dir\Debug\vc141.pdb" /Gd /TC /analyze- /errorReport:queue "C:\Program Files\CMake\share\cmake-3.10\Modules\CheckFunctionExists.c"
   CheckFunctionExists.c
   
 Link:
-  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.12.25827\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\Debug\cmTC_bbfd3.exe" /INCREMENTAL /NOLOGO anl.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_bbfd3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Temp/mosquitto-1.4.14/build/CMakeFiles/CMakeTmp/Debug/cmTC_bbfd3.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_bbfd3.dir\Debug\CheckFunctionExists.obj
-LINK : fatal error LNK1104: 'anl.lib' 파일을 열 수 없습니다. [C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_bbfd3.vcxproj]
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_bbfd3.vcxproj" 프로젝트를 빌드했습니다(기본 대상). - 실패
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\bin\HostX86\x86\link.exe /ERRORREPORT:QUEUE /OUT:"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\Debug\cmTC_ddd65.exe" /INCREMENTAL /NOLOGO anl.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_ddd65.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/CMakeTmp/Debug/cmTC_ddd65.lib" /MACHINE:X86 /SAFESEH  /machine:X86 cmTC_ddd65.dir\Debug\CheckFunctionExists.obj
+LINK : fatal error LNK1104: 'anl.lib' 파일을 열 수 없습니다. [C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_ddd65.vcxproj]
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_ddd65.vcxproj" 프로젝트를 빌드했습니다(기본 대상). - 실패
 
 빌드하지 못했습니다.
 
-"C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_bbfd3.vcxproj"(기본 대상)(1)->
+"C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_ddd65.vcxproj"(기본 대상)(1)->
 (Link 대상) -> 
-  LINK : fatal error LNK1104: 'anl.lib' 파일을 열 수 없습니다. [C:\Temp\mosquitto-1.4.14\build\CMakeFiles\CMakeTmp\cmTC_bbfd3.vcxproj]
+  LINK : fatal error LNK1104: 'anl.lib' 파일을 열 수 없습니다. [C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\CMakeTmp\cmTC_ddd65.vcxproj]
 
     경고 0개
     오류 1개
 
-경과 시간: 00:00:01.01
+경과 시간: 00:00:00.70
 
 

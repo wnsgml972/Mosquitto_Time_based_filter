@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -68,6 +68,7 @@ static int _subs_process(struct mosquitto_db *db, struct _mosquitto_subhier *hie
 	uint16_t mid;
 	struct _mosquitto_subleaf *leaf;
 	bool client_retain;
+	unsigned long tmp_time;
 
 	leaf = hier->subs;
 
@@ -96,10 +97,11 @@ static int _subs_process(struct mosquitto_db *db, struct _mosquitto_subhier *hie
 		}
 	}
 	while(source_id && leaf){
-		if(!leaf->context->id || (leaf->context->is_bridge && !strcmp(leaf->context->id, source_id))){
+		if((tmp_time = GetTickCount()) - leaf->time < leaf->time_filter*10 || !leaf->context->id || (leaf->context->is_bridge && !strcmp(leaf->context->id, source_id))){
 			leaf = leaf->next;
 			continue;
 		}
+
 		/* Check for ACL topic access. */
 		rc2 = mosquitto_acl_check(db, leaf->context, topic, MOSQ_ACL_READ);
 		if(rc2 == MOSQ_ERR_ACL_DENIED){
@@ -132,8 +134,9 @@ static int _subs_process(struct mosquitto_db *db, struct _mosquitto_subhier *hie
 				 * retain should be false. */
 				client_retain = false;
 			}
-			//printf("★TBF : %d %s\n", leaf->context->time_based_filter, leaf->context->id);
-			if(mqtt3_db_message_insert(db, leaf->context, mid, mosq_md_out, msg_qos, client_retain, stored) == 1) rc = 1;
+			if (mqtt3_db_message_insert(db, leaf->context, mid, mosq_md_out, msg_qos, client_retain, stored) == 1) rc = 1;
+			leaf->time = tmp_time;
+
 		}else{
 			return 1; /* Application error */
 		}
@@ -244,11 +247,11 @@ static void _sub_topic_tokens_free(struct _sub_token *tokens)
 	}
 }
 
-static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos, int time_based_filter, struct _mosquitto_subhier *subhier, struct _sub_token *tokens)////////=time_based_filter 추가
+static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos, short tf, struct _mosquitto_subhier *subhier, struct _sub_token *tokens)
 	/* FIXME - this function has the potential to leak subhier, audit calling functions. */
 {
 	struct _mosquitto_subhier *branch, *last = NULL;
-	struct _mosquitto_subleaf *leaf, *last_leaf; //////= 2중연결 리스트와 같은 형태
+	struct _mosquitto_subleaf *leaf, *last_leaf;
 	struct _mosquitto_subhier **subs;
 	int i;
 
@@ -260,9 +263,8 @@ static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos,
 				if(leaf->context && leaf->context->id && !strcmp(leaf->context->id, context->id)){
 					/* Client making a second subscription to same topic. Only
 					 * need to update QoS. Return -1 to indicate this to the
-					 * calling function. */					
+					 * calling function. */
 					leaf->qos = qos;
-					leaf->time_based_filter = time_based_filter;
 					if(context->protocol == mosq_p_mqtt31){
 						return -1;
 					}else{
@@ -279,7 +281,8 @@ static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos,
 			leaf->next = NULL;
 			leaf->context = context;
 			leaf->qos = qos;
-			leaf->time_based_filter = time_based_filter;
+			leaf->time_filter = tf;
+			leaf->time = 0;
 			for(i=0; i<context->sub_count; i++){
 				if(!context->subs[i]){
 					context->subs[i] = subhier;
@@ -313,7 +316,7 @@ static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos,
 	branch = subhier->children;
 	while(branch){
 		if(!strcmp(branch->topic, tokens->topic)){
-			return _sub_add(db, context, qos, time_based_filter, branch, tokens->next);
+			return _sub_add(db, context, qos, tf, branch, tokens->next);
 		}
 		last = branch;
 		branch = branch->next;
@@ -332,7 +335,7 @@ static int _sub_add(struct mosquitto_db *db, struct mosquitto *context, int qos,
 	}else{
 		last->next = branch;
 	}
-	return _sub_add(db, context, qos, time_based_filter, branch, tokens->next);
+	return _sub_add(db, context, qos, tf, branch, tokens->next);
 }
 
 static int _sub_remove(struct mosquitto_db *db, struct mosquitto *context, struct _mosquitto_subhier *subhier, struct _sub_token *tokens)
@@ -428,7 +431,7 @@ static void _sub_search(struct mosquitto_db *db, struct _mosquitto_subhier *subh
 	}
 }
 
-int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char *sub, int qos, int time_based_filter, struct _mosquitto_subhier *root)
+int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char *sub, int qos, short tf, struct _mosquitto_subhier *root)
 {
 	int rc = 0;
 	struct _mosquitto_subhier *subhier, *child;
@@ -441,15 +444,14 @@ int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char
 
 	subhier = root->children;
 	while(subhier){
-		printf("mqtt3_sub_add : %s %d %d\n", sub, qos, time_based_filter);
 		if(!strcmp(subhier->topic, tokens->topic)){
-			rc = _sub_add(db, context, qos, time_based_filter, subhier, tokens);
+			rc = _sub_add(db, context, qos, tf, subhier, tokens);
 			break;
 		}
 		subhier = subhier->next;
 	}
 	if(!subhier){
-		printf("subhier null\n");
+		printf("언제 실행되니?\n");
 		child = _mosquitto_malloc(sizeof(struct _mosquitto_subhier));
 		if(!child){
 			_sub_topic_tokens_free(tokens);
@@ -474,7 +476,7 @@ int mqtt3_sub_add(struct mosquitto_db *db, struct mosquitto *context, const char
 		}
 		root->children = child;
 
-		rc = _sub_add(db, context, qos, time_based_filter, child, tokens);
+		rc = _sub_add(db, context, qos, tf, child, tokens);
 	}
 
 	_sub_topic_tokens_free(tokens);
@@ -525,6 +527,12 @@ int mqtt3_db_messages_queue(struct mosquitto_db *db, const char *source_id, cons
 	mqtt3_db_message_write(), which could remove the message if ref_count==0.
 	*/
 	(*stored)->ref_count++;
+	/*printf("#3 ");
+	if (!(*stored))
+		printf("stored (NULL) ,");
+	else
+		printf("reference count : %d, ", (*stored)->ref_count);
+	printf("db msg store count %d\n", db->msg_store_count);*/
 
 	subhier = db->subs.children;
 	while(subhier){
@@ -533,17 +541,27 @@ int mqtt3_db_messages_queue(struct mosquitto_db *db, const char *source_id, cons
 				/* We have a message that needs to be retained, so ensure that the subscription
 				 * tree for its topic exists.
 				 */
-				_sub_add(db, NULL, 0, 0,  subhier, tokens);////////////=time_based_filter부분 0으로 보냄 내생각에 qos도 sub부분이라 그냥 0으로 고정시키는듯
+				_sub_add(db, NULL, 0, 0, subhier, tokens);
 			}
 			_sub_search(db, subhier, tokens, source_id, topic, qos, retain, *stored, true);
 		}
 		subhier = subhier->next;
 	}
 	_sub_topic_tokens_free(tokens);
-
+	/*printf("#4 ");
+	if (!(*stored))
+		printf("stored (NULL) ,");
+	else
+		printf("reference count : %d, ", (*stored)->ref_count);
+	printf("db msg store count %d\n", db->msg_store_count);*/
 	/* Remove our reference and free if needed. */
 	mosquitto__db_msg_store_deref(db, stored);
-
+	/*printf("#5 ");
+	if (!(*stored))
+		printf("stored (NULL) ,");
+	else
+		printf("reference count : %d, ", (*stored)->ref_count);
+	printf("db msg store count %d\n", db->msg_store_count);*/
 	return rc;
 }
 
@@ -651,7 +669,7 @@ void mqtt3_sub_tree_print(struct _mosquitto_subhier *root, int level)
 	for(i=0; i<level*2; i++){
 		printf(" ");
 	}
-	//printf("%s", root->topic);
+	printf("%s", root->topic);
 	leaf = root->subs;
 	while(leaf){
 		if(leaf->context){
@@ -686,9 +704,12 @@ static int _retain_process(struct mosquitto_db *db, struct mosquitto_msg_store *
 		return rc;
 	}
 
-	qos = retained->qos;
-
-	if(qos > sub_qos) qos = sub_qos;
+	if (db->config->upgrade_outgoing_qos){
+		qos = sub_qos;
+	} else {
+		qos = retained->qos;
+		if(qos > sub_qos) qos = sub_qos;
+	}
 	if(qos > 0){
 		mid = _mosquitto_mid_generate(context);
 	}else{
@@ -757,7 +778,6 @@ int mqtt3_retain_queue(struct mosquitto_db *db, struct mosquitto *context, const
 			_retain_search(db, subhier, tokens, context, sub, sub_qos, 0);
 			break;
 		}
-		//printf("mqtt3_retain_queue : %s %s %s\n", subhier->topic, subhier->retained->topic, subhier->retained->payload);
 		subhier = subhier->next;
 	}
 	while(tokens){
@@ -766,6 +786,7 @@ int mqtt3_retain_queue(struct mosquitto_db *db, struct mosquitto *context, const
 		_mosquitto_free(tokens);
 		tokens = tail;
 	}
+
 	return MOSQ_ERR_SUCCESS;
 }
 

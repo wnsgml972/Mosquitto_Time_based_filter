@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2011-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2011-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -47,7 +47,7 @@ void __stdcall service_handler(DWORD fdwControl)
 }
 
 /* Function called when started as a service. */
-void __stdcall service_main(DWORD dwArgc, LPTSTR *lpszArgv)//서비스를 실행하면 이부분이 실행되고, 여기서 main을 호출해주는 방식으로 돌아가게된다.
+void __stdcall service_main(DWORD dwArgc, LPTSTR *lpszArgv)
 {
 	char **argv;
 	int argc = 1;
@@ -99,7 +99,7 @@ void service_install(void)
 		svc_handle = CreateService(sc_manager, "mosquitto", "Mosquitto Broker", 
 				SERVICE_START | SERVICE_STOP | SERVICE_CHANGE_CONFIG,
 				SERVICE_WIN32_OWN_PROCESS, SERVICE_AUTO_START, SERVICE_ERROR_NORMAL,
-				exe_path, NULL, NULL, NULL, NULL, NULL);//exe_path는 서비스로 실행시켰을 때 어떻게 실행시키냐라고 등록을 시켜놓음
+				exe_path, NULL, NULL, NULL, NULL, NULL);
 
 		if(svc_handle){
 			svc_desc.lpDescription = "MQTT v3.1 broker";
@@ -136,6 +136,7 @@ void service_run(void)
 		{ "mosquitto", service_main },
 		{ NULL, NULL }
 	};
+
 	StartServiceCtrlDispatcher(ste);
 }
 

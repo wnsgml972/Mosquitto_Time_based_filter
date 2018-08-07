@@ -2,12 +2,12 @@
 .\"     Title: mosquitto-tls
 .\"    Author: [see the "Author" section]
 .\" Generator: DocBook XSL Stylesheets v1.79.1 <http://docbook.sf.net/>
-.\"      Date: 07/10/2017
+.\"      Date: 02/28/2018
 .\"    Manual: Conventions and miscellaneous
 .\"    Source: Mosquitto Project
 .\"  Language: English
 .\"
-.TH "MOSQUITTO\-TLS" "7" "07/10/2017" "Mosquitto Project" "Conventions and miscellaneous"
+.TH "MOSQUITTO\-TLS" "7" "02/28/2018" "Mosquitto Project" "Conventions and miscellaneous"
 .\" -----------------------------------------------------------------
 .\" * Define some portability stuff
 .\" -----------------------------------------------------------------
@@ -102,6 +102,22 @@ Generate a certificate signing request to send to the CA\&.
 .IP \(bu 2.3
 .\}
 openssl req \-out server\&.csr \-key server\&.key \-new
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.PP
+When prompted for the CN (Common Name), please enter either your server (or broker) hostname or domain name\&.
+.sp .5v
 .RE
 .PP
 Send the CSR to the CA, or sign it with your CA key:

@@ -1,0 +1,59 @@
+﻿  Building Custom Rule C:/TEMP/mosquitto-1.4.15/src/CMakeLists.txt
+  CMake does not need to re-run because C:/TEMP/mosquitto-1.4.15/build/src/CMakeFiles/generate.stamp is up-to-date.
+  conf.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  context.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  database.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  logging.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  loop.c
+C:\TEMP\mosquitto-1.4.15\src\loop.c(41): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  memory_mosq.c
+  mosquitto.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto.c(47): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  net.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  net_mosq.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  persist.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  read_handle.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  read_handle_client.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  read_handle_server.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  read_handle_shared.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  subs.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  security.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  security_default.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  send_client_mosq.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  send_mosq.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  send_server.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  sys_tree.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  time_mosq.c
+C:\TEMP\mosquitto-1.4.15\lib\time_mosq.c(44): warning C4996: 'GetVersionExA': deprecated로 선언되었습니다.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.14393.0\um\sysinfoapi.h(442): note: 'GetVersionExA' 선언을 참조하십시오.
+  tls_mosq.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  util_mosq.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  websockets.c
+C:\TEMP\mosquitto-1.4.15\src\websockets.c(32): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  will_mosq.c
+  bridge.c
+C:\TEMP\mosquitto-1.4.15\src\mosquitto_broker.h(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'libwebsockets.h': No such file or directory
+  service.c
+  코드를 생성하고 있습니다...

@@ -1,5 +1,0 @@
-﻿  Building Custom Rule C:/Temp/mosquitto-1.4.14/lib/cpp/CMakeLists.txt
-  CMake does not need to re-run because C:/Temp/mosquitto-1.4.14/build/lib/cpp/CMakeFiles/generate.stamp is up-to-date.
-  mosquittopp.cpp
-     C:/Temp/mosquitto-1.4.14/build/lib/cpp/Debug/mosquittopp.lib 라이브러리 및 C:/Temp/mosquitto-1.4.14/build/lib/cpp/Debug/mosquittopp.exp 개체를 생성하고 있습니다.
-  mosquittopp.vcxproj -> C:\Temp\mosquitto-1.4.14\build\lib\cpp\Debug\mosquittopp.dll

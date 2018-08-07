@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -67,6 +67,7 @@ int _mosquitto_socket_connect_step3(struct mosquitto *mosq, const char *host, ui
 int _mosquitto_socket_nonblock(mosq_sock_t sock);
 int _mosquitto_socketpair(mosq_sock_t *sp1, mosq_sock_t *sp2);
 
+int _mosquitto_read_short(struct _mosquitto_packet *packet, uint16_t *tf);
 int _mosquitto_read_byte(struct _mosquitto_packet *packet, uint8_t *byte);
 int _mosquitto_read_bytes(struct _mosquitto_packet *packet, void *bytes, uint32_t count);
 int _mosquitto_read_string(struct _mosquitto_packet *packet, char **str);

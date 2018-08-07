@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -45,7 +45,7 @@ extern "C" {
 
 #define LIBMOSQUITTO_MAJOR 1
 #define LIBMOSQUITTO_MINOR 4
-#define LIBMOSQUITTO_REVISION 14
+#define LIBMOSQUITTO_REVISION 15
 /* LIBMOSQUITTO_VERSION_NUMBER looks like 1002001 for e.g. version 1.2.1. */
 #define LIBMOSQUITTO_VERSION_NUMBER (LIBMOSQUITTO_MAJOR*1000000+LIBMOSQUITTO_MINOR*1000+LIBMOSQUITTO_REVISION)
 
@@ -619,7 +619,7 @@ libmosq_EXPORT int mosquitto_publish(struct mosquitto *mosq, int *mid, const cha
  * 	MOSQ_ERR_NOMEM -   if an out of memory condition occurred.
  * 	MOSQ_ERR_NO_CONN - if the client isn't connected to a broker.
  */
-libmosq_EXPORT int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos, int time_based_filter);
+libmosq_EXPORT int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos);
 
 /*
  * Function: mosquitto_unsubscribe
@@ -945,7 +945,7 @@ libmosq_EXPORT int mosquitto_threaded_set(struct mosquitto *mosq, bool threaded)
  *	                            MQTT_PROTOCOL_V31.
  */
 libmosq_EXPORT int mosquitto_opts_set(struct mosquitto *mosq, enum mosq_opt_t option, void *value);
-libmosq_EXPORT int mosquitto_timebased_set(struct mosquitto *mosq, int timebased);///////////////////=여기에 추가
+
 
 /*
  * Function: mosquitto_tls_set
@@ -1527,7 +1527,6 @@ libmosq_EXPORT int mosquitto_pub_topic_check(const char *topic);
  *   <mosquitto_sub_topic_check>
  */
 libmosq_EXPORT int mosquitto_sub_topic_check(const char *topic);
-
 
 #ifdef __cplusplus
 }

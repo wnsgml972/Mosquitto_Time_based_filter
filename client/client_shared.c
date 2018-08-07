@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2014-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -198,7 +198,7 @@ int client_config_load(struct mosq_config *cfg, int pub_or_sub, int argc, char *
 	}
 
 	/* Deal with real argc/argv */
-	rc = client_config_line_proc(cfg, pub_or_sub, argc, argv);///////////////=여기서 argv 설정 및 체크
+	rc = client_config_line_proc(cfg, pub_or_sub, argc, argv);
 	if(rc) return rc;
 
 	if(cfg->will_payload && !cfg->will_topic){
@@ -425,19 +425,7 @@ int client_config_line_proc(struct mosq_config *cfg, int pub_or_sub, int argc, c
 				cfg->pub_mode = MSGMODE_CMD;
 			}
 			i++;
-		}
-		else if (!strcmp(argv[i], "-F") || !strcmp(argv[i], "-time-based-filter")) {/////////////이부분 추가 timebase filter 
-			if (i == argc - 1) {
-				fprintf(stderr, "Error: -m argument given but no message specified.\n\n");
-				return 1;
-			}else {/////////=타임베이스 필터 옵션이 있으므로 이부분 int로 변환 0~255까지 가능
-				cfg->time_based_filter = atoi(argv[i + 1]);
-				if (cfg->time_based_filter < 0 || cfg->time_based_filter>255)
-					return 1;
-			}
-			i++;
-		}
-		else if(!strcmp(argv[i], "-M")){
+		}else if(!strcmp(argv[i], "-M")){
 			if(i==argc-1){
 				fprintf(stderr, "Error: -M argument given but max_inflight not specified.\n\n");
 				return 1;
@@ -718,14 +706,11 @@ int client_opts_set(struct mosquitto *mosq, struct mosq_config *cfg)
 		}
 	}
 #endif
-	//mosq->use_time_base_filter = cfg->use_time_base_filter;
-	mosquitto_timebased_set(mosq, cfg->time_based_filter);
 	mosquitto_opts_set(mosq, MOSQ_OPT_PROTOCOL_VERSION, &(cfg->protocol_version));
-	
 	return MOSQ_ERR_SUCCESS;
 }
 
-int client_id_generate(struct mosq_config *cfg, const char *id_base)//context_id가 다르면 안
+int client_id_generate(struct mosq_config *cfg, const char *id_base)
 {
 	int len;
 	char hostname[256];
@@ -765,10 +750,8 @@ int client_connect(struct mosquitto *mosq, struct mosq_config *cfg)
 
 #ifdef WITH_SRV
 	if(cfg->use_srv){
-		//printf("srv인가?\n");///=
 		rc = mosquitto_connect_srv(mosq, cfg->host, cfg->keepalive, cfg->bind_address);
-	}else{////////일반적으로 여기로 들어감
-		//printf("아니네\n"); ///=
+	}else{
 		rc = mosquitto_connect_bind(mosq, cfg->host, cfg->port, cfg->keepalive, cfg->bind_address);
 	}
 #else

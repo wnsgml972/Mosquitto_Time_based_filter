@@ -1,0 +1,8 @@
+﻿  Building Custom Rule C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt
+  CMake does not need to re-run because C:/TEMP/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp is up-to-date.
+  sub_client.c
+  client_shared.c
+C:\TEMP\mosquitto-1.4.15\client\client_shared.c(850): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  코드를 생성하고 있습니다...
+  mosquitto_sub.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\client\Debug\mosquitto_sub.exe
+  mosquitto_sub.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/client/Debug/mosquitto_sub.pdb (Full PDB)

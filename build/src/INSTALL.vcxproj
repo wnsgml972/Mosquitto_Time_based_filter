@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DDAFEF13-4C62-3CB6-979C-D4FBD6A91C18}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{4A03C4A3-FC6A-30C3-95A2-D827D0D25AA8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>INSTALL</ProjectName>
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.14;C:\Temp\mosquitto-1.4.14\src;C:\Temp\mosquitto-1.4.14\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15;C:\TEMP\mosquitto-1.4.15\src;C:\TEMP\mosquitto-1.4.15\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -85,7 +85,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.14;C:\Temp\mosquitto-1.4.14\src;C:\Temp\mosquitto-1.4.14\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15;C:\TEMP\mosquitto-1.4.15\src;C:\TEMP\mosquitto-1.4.15\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -107,7 +107,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.14;C:\Temp\mosquitto-1.4.14\src;C:\Temp\mosquitto-1.4.14\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15;C:\TEMP\mosquitto-1.4.15\src;C:\TEMP\mosquitto-1.4.15\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -129,7 +129,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.14;C:\Temp\mosquitto-1.4.14\src;C:\Temp\mosquitto-1.4.14\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15;C:\TEMP\mosquitto-1.4.15\src;C:\TEMP\mosquitto-1.4.15\lib;C:\OpenSSL-Win32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -150,7 +150,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Temp\mosquitto-1.4.14\build\CMakeFiles\481832e199aed9cb31f881c2cf5ab765\INSTALL_force.rule">
+    <CustomBuild Include="C:\TEMP\mosquitto-1.4.15\build\CMakeFiles\f1f73f070751d3ca7ef9324fc0f26777\INSTALL_force.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
 cd .
@@ -161,8 +161,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Temp/mosquitto-1.4.14/build/CMakeFiles/481832e199aed9cb31f881c2cf5ab765/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Temp\mosquitto-1.4.14\build\src\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/f1f73f070751d3ca7ef9324fc0f26777/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\TEMP\mosquitto-1.4.15\build\src\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
@@ -174,8 +174,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Temp/mosquitto-1.4.14/build/CMakeFiles/481832e199aed9cb31f881c2cf5ab765/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Temp\mosquitto-1.4.14\build\src\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/f1f73f070751d3ca7ef9324fc0f26777/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\TEMP\mosquitto-1.4.15\build\src\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
@@ -187,8 +187,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Temp/mosquitto-1.4.14/build/CMakeFiles/481832e199aed9cb31f881c2cf5ab765/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Temp\mosquitto-1.4.14\build\src\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/f1f73f070751d3ca7ef9324fc0f26777/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\TEMP\mosquitto-1.4.15\build\src\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
@@ -200,18 +200,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Temp/mosquitto-1.4.14/build/CMakeFiles/481832e199aed9cb31f881c2cf5ab765/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Temp\mosquitto-1.4.14\build\src\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/TEMP/mosquitto-1.4.15/build/CMakeFiles/f1f73f070751d3ca7ef9324fc0f26777/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\TEMP\mosquitto-1.4.15\build\src\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Temp\mosquitto-1.4.14\build\ZERO_CHECK.vcxproj">
-      <Project>{FEE1CFAF-7775-3DE6-90A9-429E723130EF}</Project>
+    <ProjectReference Include="C:\TEMP\mosquitto-1.4.15\build\ZERO_CHECK.vcxproj">
+      <Project>{00BABB64-5B8F-3A8D-BBD1-33F25E2105EE}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Temp\mosquitto-1.4.14\build\ALL_BUILD.vcxproj">
-      <Project>{D68AC1C9-D533-3E11-8D4C-7135FD43B272}</Project>
+    <ProjectReference Include="C:\TEMP\mosquitto-1.4.15\build\ALL_BUILD.vcxproj">
+      <Project>{DBCF5DEB-A406-35EE-B480-C429E4D10BFF}</Project>
       <Name>ALL_BUILD</Name>
     </ProjectReference>
   </ItemGroup>

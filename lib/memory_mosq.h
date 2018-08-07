@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2010-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2010-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -19,8 +19,7 @@ Contributors:
 
 #include <stdio.h>
 #include <sys/types.h>
-#include <stdint.h>
-#include <stdbool.h>
+
 #if defined(WITH_MEMORY_TRACKING) && defined(WITH_BROKER) && !defined(WIN32) && !defined(__SYMBIAN32__) && !defined(__ANDROID__) && !defined(__UCLIBC__) && !defined(__OpenBSD__)
 #define REAL_WITH_MEMORY_TRACKING
 #endif
@@ -35,15 +34,8 @@ unsigned long _mosquitto_max_memory_used(void);
 void *_mosquitto_realloc(void *ptr, size_t size);
 char *_mosquitto_strdup(const char *s);
 
-
-void mosquitto_set_publish_data(struct publish_data *pub_data, struct mosquitto mosq, uint16_t mid, uint32_t payloadlen, int qos, bool retain, bool dup);
-void *mosquitto_time_based_filter(void *ptr);///////////////////=타임베이스드 필터 추가
-//void mosquitto_connect_timet_based_filter(struct mosquitto mosq);
-void mosquitto_connect_timet_based_filter(struct mosquitto mosq, uint16_t mid, const char *topic, uint32_t payloadlen, const void *payload, int qos, bool retain, bool dup);
-//void mosquitto_connect_timet_based_filter(struct mosquitto *context);
-void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data);
-//void mosquitto_connect_timet_based_filter(struct mosquitto_db *db, struct mosquitto *context);
-//void mosquitto_disconnect_timet_based_filter(struct publish_data *pub_data);
-void mosquitto_time_based_filter_start();
+#ifdef WITH_BROKER
+void memory__set_limit(size_t lim);
+#endif
 
 #endif

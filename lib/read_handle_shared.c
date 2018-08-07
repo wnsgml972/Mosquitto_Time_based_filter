@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2014 Roger Light <roger@atchoo.org>
+Copyright (c) 2009-2018 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
@@ -142,12 +142,24 @@ int _mosquitto_handle_pubrel(struct mosquitto_db *db, struct mosquitto *mosq)
 	if(rc) return rc;
 #ifdef WITH_BROKER
 	_mosquitto_log_printf(NULL, MOSQ_LOG_DEBUG, "Received PUBREL from %s (Mid: %d)", mosq->id, mid);
-
+	/*printf("#qos2-3 \n");
+	if (!mosq)
+		printf("context (NULL) ,");
+	else
+		printf("(%s) context msg count : %d, ", mosq->id, mosq->msg_count);
+	printf("db msg store count %d\n", db->msg_store_count);
+	printf("release mid : %d \n", mid);*/
 	if(mqtt3_db_message_release(db, mosq, mid, mosq_md_in)){
 		/* Message not found. Still send a PUBCOMP anyway because this could be
 		 * due to a repeated PUBREL after a client has reconnected. */
 		_mosquitto_log_printf(mosq, MOSQ_LOG_WARNING, "Warning: Received PUBREL from %s for an unknown packet identifier %d.", mosq->id, mid);
 	}
+	/*printf("#qos2-4 after release\n ");
+	if (!mosq)
+		printf("context (NULL) ,");
+	else
+		printf("(%s) context msg count : %d, ", mosq->id, mosq->msg_count);
+	printf("db msg store count %d\n", db->msg_store_count);*/
 #else
 	_mosquitto_log_printf(mosq, MOSQ_LOG_DEBUG, "Client %s received PUBREL (Mid: %d)", mosq->id, mid);
 
@@ -164,7 +176,13 @@ int _mosquitto_handle_pubrel(struct mosquitto_db *db, struct mosquitto *mosq)
 		_mosquitto_message_cleanup(&message);
 	}
 #endif
+#ifdef WITH_BROKER
+	//printf("#1 db msg count : %d\n", db->msg_store_count);
+#endif
 	rc = _mosquitto_send_pubcomp(mosq, mid);
+#ifdef WITH_BROKER
+	//printf("#2 db msg count : %d\n", db->msg_store_count);
+#endif
 	if(rc) return rc;
 
 	return MOSQ_ERR_SUCCESS;
