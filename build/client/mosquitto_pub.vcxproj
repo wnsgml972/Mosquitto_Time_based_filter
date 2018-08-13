@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{77DB61E3-D677-3050-9982-D0C7DBED37E0}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{34831BE3-3272-3D87-A809-848E5B4D4A04}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>mosquitto_pub</ProjectName>
@@ -56,34 +56,50 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Temp\mosquitto-1.4.15\build\client\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mosquitto_pub.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">mosquitto_pub</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Temp\mosquitto-1.4.15\build\client\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mosquitto_pub.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">mosquitto_pub</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Temp\mosquitto-1.4.15\build\client\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">mosquitto_pub.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">mosquitto_pub</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Temp\mosquitto-1.4.15\build\client\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">mosquitto_pub.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">mosquitto_pub</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Temp\libwebsockets-2.4.1\build\lib\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <IncludePath>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Temp\libwebsockets-2.4.1\build\lib\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Temp\libwebsockets-2.4.1\build\lib\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <IncludePath>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Temp\libwebsockets-2.4.1\build\lib\Release;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsC</CompileAs>
@@ -95,15 +111,15 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-07-23 17:26:37.92";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-08-07 15:38:27.50";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-07-23 17:26:37.92\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-08-07 15:38:27.50\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -112,12 +128,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>..\lib\Debug\mosquitto.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MDd.lib;C:\OpenSSL-Win32\lib\VC\libeay32MDd.lib;C:\pthreads\Pre-built.2\lib\x86\pthreadVC2.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/TEMP/mosquitto-1.4.15/build/lib;C:/TEMP/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/Temp/mosquitto-1.4.15/build/lib;C:/Temp/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/TEMP/mosquitto-1.4.15/build/client/Debug/mosquitto_pub.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/TEMP/mosquitto-1.4.15/build/client/Debug/mosquitto_pub.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Temp/mosquitto-1.4.15/build/client/Debug/mosquitto_pub.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Temp/mosquitto-1.4.15/build/client/Debug/mosquitto_pub.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -126,7 +142,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <ExceptionHandling>
@@ -136,16 +152,17 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-07-23 17:26:37.92";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-08-07 15:38:27.50";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-07-23 17:26:37.92\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-08-07 15:38:27.50\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -154,12 +171,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>..\lib\Release\mosquitto.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;C:\pthreads\Pre-built.2\lib\x86\pthreadVC2.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/TEMP/mosquitto-1.4.15/build/lib;C:/TEMP/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/Temp/mosquitto-1.4.15/build/lib;C:/Temp/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/TEMP/mosquitto-1.4.15/build/client/Release/mosquitto_pub.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/TEMP/mosquitto-1.4.15/build/client/Release/mosquitto_pub.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Temp/mosquitto-1.4.15/build/client/Release/mosquitto_pub.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Temp/mosquitto-1.4.15/build/client/Release/mosquitto_pub.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -168,7 +185,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <ExceptionHandling>
@@ -178,16 +195,17 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-07-23 17:26:37.92";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-08-07 15:38:27.50";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-07-23 17:26:37.92\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-08-07 15:38:27.50\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -196,12 +214,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>..\lib\MinSizeRel\mosquitto.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;C:\pthreads\Pre-built.2\lib\x86\pthreadVC2.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/TEMP/mosquitto-1.4.15/build/lib;C:/TEMP/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/Temp/mosquitto-1.4.15/build/lib;C:/Temp/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/TEMP/mosquitto-1.4.15/build/client/MinSizeRel/mosquitto_pub.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/TEMP/mosquitto-1.4.15/build/client/MinSizeRel/mosquitto_pub.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Temp/mosquitto-1.4.15/build/client/MinSizeRel/mosquitto_pub.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Temp/mosquitto-1.4.15/build/client/MinSizeRel/mosquitto_pub.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -210,7 +228,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\libwebsockets-2.4.1\lib;C:\Temp\libwebsockets-2.4.1\build;C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsC</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -221,15 +239,15 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-07-23 17:26:37.92";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION="1.4.15";TIMESTAMP="2018-08-07 15:38:27.50";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-07-23 17:26:37.92\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE;VERSION=\"1.4.15\";TIMESTAMP=\"2018-08-07 15:38:27.50\";_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;WITH_TLS;WITH_TLS_PSK;WITH_EC;WITH_SOCKS;WITH_SRV;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\TEMP\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Temp\mosquitto-1.4.15\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -238,12 +256,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>..\lib\RelWithDebInfo\mosquitto.lib;C:\OpenSSL-Win32\lib\VC\ssleay32MD.lib;C:\OpenSSL-Win32\lib\VC\libeay32MD.lib;C:\pthreads\Pre-built.2\lib\x86\pthreadVC2.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:/TEMP/mosquitto-1.4.15/build/lib;C:/TEMP/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/Temp/mosquitto-1.4.15/build/lib;C:/Temp/mosquitto-1.4.15/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/TEMP/mosquitto-1.4.15/build/client/RelWithDebInfo/mosquitto_pub.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/TEMP/mosquitto-1.4.15/build/client/RelWithDebInfo/mosquitto_pub.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Temp/mosquitto-1.4.15/build/client/RelWithDebInfo/mosquitto_pub.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Temp/mosquitto-1.4.15/build/client/RelWithDebInfo/mosquitto_pub.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -251,10 +269,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/TEMP/mosquitto-1.4.15 -BC:/TEMP/mosquitto-1.4.15/build --check-stamp-file C:/TEMP/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Temp/mosquitto-1.4.15 -BC:/Temp/mosquitto-1.4.15/build --check-stamp-file C:/Temp/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -262,12 +280,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Temp\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/TEMP/mosquitto-1.4.15 -BC:/TEMP/mosquitto-1.4.15/build --check-stamp-file C:/TEMP/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Temp/mosquitto-1.4.15 -BC:/Temp/mosquitto-1.4.15/build --check-stamp-file C:/Temp/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -275,12 +293,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Temp\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/TEMP/mosquitto-1.4.15 -BC:/TEMP/mosquitto-1.4.15/build --check-stamp-file C:/TEMP/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Temp/mosquitto-1.4.15 -BC:/Temp/mosquitto-1.4.15/build --check-stamp-file C:/Temp/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -288,12 +306,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Temp\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HC:/TEMP/mosquitto-1.4.15 -BC:/TEMP/mosquitto-1.4.15/build --check-stamp-file C:/TEMP/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Temp/mosquitto-1.4.15 -BC:/Temp/mosquitto-1.4.15/build --check-stamp-file C:/Temp/mosquitto-1.4.15/build/client/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -301,23 +319,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/TEMP/mosquitto-1.4.15/client/CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;C:\TEMP\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\TEMP\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Temp/mosquitto-1.4.15/client/CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;C:\Temp\mosquitto-1.4.15\client\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Temp\mosquitto-1.4.15\build\client\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\client\pub_client.c"  />
-    <ClCompile Include="C:\TEMP\mosquitto-1.4.15\client\client_shared.c"  />
-    <ClInclude Include="C:\TEMP\mosquitto-1.4.15\client\client_shared.h" />
+    <ClCompile Include="C:\Temp\mosquitto-1.4.15\client\pub_client.c" />
+    <ClCompile Include="C:\Temp\mosquitto-1.4.15\client\client_shared.c" />
+    <ClInclude Include="C:\Temp\mosquitto-1.4.15\client\client_shared.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\TEMP\mosquitto-1.4.15\build\ZERO_CHECK.vcxproj">
-      <Project>{00BABB64-5B8F-3A8D-BBD1-33F25E2105EE}</Project>
+    <ProjectReference Include="C:\Temp\mosquitto-1.4.15\build\ZERO_CHECK.vcxproj">
+      <Project>{741DE92E-9B0D-3C95-89FE-9040C19860EE}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\TEMP\mosquitto-1.4.15\build\lib\libmosquitto.vcxproj">
-      <Project>{55CC8A1B-B332-3693-8A62-162751E3945C}</Project>
+    <ProjectReference Include="C:\Temp\mosquitto-1.4.15\build\lib\libmosquitto.vcxproj">
+      <Project>{3C35158B-0802-3A60-B959-0F7C368EDA9C}</Project>
       <Name>libmosquitto</Name>
     </ProjectReference>
   </ItemGroup>

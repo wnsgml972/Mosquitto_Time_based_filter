@@ -54,16 +54,30 @@ Contributors:
 #include <mosquitto_broker.h>
 #include <memory_mosq.h>
 #include <util_mosq.h>
+#ifdef WIN32
+#include <Windows.h>
+#include <time.h>
+#endif // WIN32
+#ifdef __linux__
 #include <sys/time.h>
 #include <unistd.h>
-unsigned int GetTickCount()
+#endif // DEBUG
+
+
+unsigned int getTickCount()
 {
+#ifdef WIN32
+	return GetTickCount();
+#endif // WIN32
+#ifdef __linux__
 	struct timeval gettick;
 	unsigned int tick;
 	int ret;
 	gettimeofday(&gettick, NULL);
 	tick = gettick.tv_sec * 1000 + gettick.tv_usec / 1000;
 	return tick;
+#endif // DEBUG
+	return 0;
 }
 
 struct _sub_token {
@@ -108,7 +122,7 @@ static int _subs_process(struct mosquitto_db *db, struct _mosquitto_subhier *hie
 		}
 	}
 	while(source_id && leaf){
-		if((tmp_time = GetTickCount()) - leaf->time < leaf->time_filter*10 || !leaf->context->id || (leaf->context->is_bridge && !strcmp(leaf->context->id, source_id))){
+		if((tmp_time = getTickCount()) - leaf->time < leaf->time_filter*10 || !leaf->context->id || (leaf->context->is_bridge && !strcmp(leaf->context->id, source_id))){
 			leaf = leaf->next;
 			continue;
 		}

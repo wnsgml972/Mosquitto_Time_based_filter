@@ -1,2 +1,3 @@
-﻿  mosquitto_sub.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\client\Debug\mosquitto_sub.exe
-  mosquitto_sub.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/client/Debug/mosquitto_sub.pdb (Full PDB)
+﻿  sub_client.c
+C:\Temp\mosquitto-1.4.15\client\sub_client.c(97): warning C4020: 'mosquitto_subscribe': 실제 매개 변수가 너무 많습니다.
+  mosquitto_sub.vcxproj -> C:\Temp\mosquitto-1.4.15\build\client\Debug\mosquitto_sub.exe

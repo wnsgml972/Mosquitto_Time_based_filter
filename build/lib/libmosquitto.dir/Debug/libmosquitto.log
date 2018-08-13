@@ -1,3 +1,2 @@
-﻿  read_handle_shared.c
-  libmosquitto.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\lib\Debug\mosquitto.dll
-  libmosquitto.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/lib/Debug/mosquitto.pdb (Full PDB)
+﻿  net_mosq.c
+  libmosquitto.vcxproj -> C:\Temp\mosquitto-1.4.15\build\lib\Debug\mosquitto.dll

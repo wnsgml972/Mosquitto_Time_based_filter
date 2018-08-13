@@ -157,7 +157,7 @@ int _mosquitto_send_disconnect(struct mosquitto *mosq)
 	return _mosquitto_send_simple_command(mosq, DISCONNECT);
 }
 
-int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos)
+int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topic, uint8_t topic_qos, short tf)
 {
 	/* FIXME - only deals with a single topic */
 	struct _mosquitto_packet *packet = NULL;
@@ -171,7 +171,7 @@ int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topi
 	packet = _mosquitto_calloc(1, sizeof(struct _mosquitto_packet));
 	if(!packet) return MOSQ_ERR_NOMEM;
 
-	packetlen = 2 + 2+strlen(topic) + 1;
+	packetlen = 2 + 2+strlen(topic) + 1 + 2;///time_filter 2byte
 
 	packet->command = SUBSCRIBE | (1<<1);
 	packet->remaining_length = packetlen;
@@ -186,10 +186,12 @@ int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topi
 	if(mid) *mid = (int)local_mid;
 	_mosquitto_write_uint16(packet, local_mid);
 
+	printf("쓰기 전.\n");
 	/* Payload */
 	_mosquitto_write_string(packet, topic, strlen(topic));
 	_mosquitto_write_byte(packet, topic_qos);
-
+	_mosquitto_write_short(packet, tf);
+	printf("일단 썼다.\n");
 #ifdef WITH_BROKER
 # ifdef WITH_BRIDGE
 	_mosquitto_log_printf(mosq, MOSQ_LOG_DEBUG, "Bridge %s sending SUBSCRIBE (Mid: %d, Topic: %s, QoS: %d)", mosq->id, local_mid, topic, topic_qos);

@@ -1,4 +1,0 @@
-﻿  Building Custom Rule C:/TEMP/mosquitto-1.4.15/src/CMakeLists.txt
-  CMake does not need to re-run because C:/TEMP/mosquitto-1.4.15/build/src/CMakeFiles/generate.stamp is up-to-date.
-  mosquitto_passwd.c
-LINK : fatal error LNK1104: 'optimized.lib' 파일을 열 수 없습니다.

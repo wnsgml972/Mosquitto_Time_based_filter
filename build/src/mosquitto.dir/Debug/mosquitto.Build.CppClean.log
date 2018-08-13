@@ -4,7 +4,6 @@ c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\send_mosq.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\send_client_mosq.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\security_default.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\security.obj
-c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\subs.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\read_handle_shared.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\read_handle_server.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\read_handle_client.obj
@@ -27,7 +26,11 @@ c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\util_mosq.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\tls_mosq.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\time_mosq.obj
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\sys_tree.obj
+c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\subs.obj
 c:\temp\mosquitto-1.4.15\build\src\cmakefiles\generate.stamp
+c:\temp\mosquitto-1.4.15\build\src\debug\mosquitto.exe
+c:\temp\mosquitto-1.4.15\build\src\debug\mosquitto.ilk
+c:\temp\mosquitto-1.4.15\build\src\debug\mosquitto.pdb
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\mosquitto.tlog\cl.command.1.tlog
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\mosquitto.tlog\cl.read.1.tlog
 c:\temp\mosquitto-1.4.15\build\src\mosquitto.dir\debug\mosquitto.tlog\cl.write.1.tlog

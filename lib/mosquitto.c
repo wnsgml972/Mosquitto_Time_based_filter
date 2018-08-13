@@ -625,14 +625,14 @@ int mosquitto_publish(struct mosquitto *mosq, int *mid, const char *topic, int p
 	}
 }
 
-int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos)
+int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos, short tf)
 {
 	if(!mosq) return MOSQ_ERR_INVAL;
 	if(mosq->sock == INVALID_SOCKET) return MOSQ_ERR_NO_CONN;
 
 	if(mosquitto_sub_topic_check(sub)) return MOSQ_ERR_INVAL;
 
-	return _mosquitto_send_subscribe(mosq, mid, sub, qos);
+	return _mosquitto_send_subscribe(mosq, mid, sub, qos, tf);
 }
 
 int mosquitto_unsubscribe(struct mosquitto *mosq, int *mid, const char *sub)
@@ -1217,7 +1217,6 @@ bool mosquitto_want_write(struct mosquitto *mosq)
 #endif
 	return result;
 }
-
 int mosquitto_opts_set(struct mosquitto *mosq, enum mosq_opt_t option, void *value)
 {
 	int ival;

@@ -1,17 +1,17 @@
 /*
-Copyright (c) 2014-2018 Roger Light <roger@atchoo.org>
+Copyright (c) 2014 Roger Light <roger@atchoo.org>
 
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 and Eclipse Distribution License v1.0 which accompany this distribution.
- 
+
 The Eclipse Public License is available at
-   http://www.eclipse.org/legal/epl-v10.html
+http://www.eclipse.org/legal/epl-v10.html
 and the Eclipse Distribution License is available at
-  http://www.eclipse.org/org/documents/edl-v10.php.
- 
+http://www.eclipse.org/org/documents/edl-v10.php.
+
 Contributors:
-   Roger Light - initial implementation and documentation.
+Roger Light - initial implementation and documentation.
 */
 
 #ifndef _CLIENT_CONFIG_H
@@ -29,6 +29,8 @@ Contributors:
 
 #define CLIENT_PUB 1
 #define CLIENT_SUB 2
+
+#define HILIGHT_TIME 12345
 
 struct mosq_config {
 	char *id;
@@ -80,6 +82,7 @@ struct mosq_config {
 	bool verbose; /* sub */
 	bool eol; /* sub */
 	int msg_count; /* sub */
+	int time_filter;/* sub *////////// true면 타임베이스 필터 사용 - 추가함
 #ifdef WITH_SOCKS
 	char *socks5_host;
 	int socks5_port;

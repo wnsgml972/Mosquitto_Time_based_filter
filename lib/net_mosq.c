@@ -692,7 +692,13 @@ void _mosquitto_write_byte(struct _mosquitto_packet *packet, uint8_t byte)
 	packet->payload[packet->pos] = byte;
 	packet->pos++;
 }
-
+void _mosquitto_write_short(struct _mosquitto_packet *packet, uint16_t tf)
+{
+	assert(packet);
+	assert(packet->pos + 2 <= packet->packet_length);
+	memcpy(&(packet->payload[packet->pos]), &tf, 2);
+	packet->pos += 2;
+}
 int _mosquitto_read_bytes(struct _mosquitto_packet *packet, void *bytes, uint32_t count)
 {
 	assert(packet);

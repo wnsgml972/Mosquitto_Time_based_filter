@@ -1,2 +1,5 @@
-﻿  mosquitto_pub.vcxproj -> C:\TEMP\mosquitto-1.4.15\build\client\Debug\mosquitto_pub.exe
-  mosquitto_pub.vcxproj -> C:/TEMP/mosquitto-1.4.15/build/client/Debug/mosquitto_pub.pdb (Full PDB)
+﻿  client_shared.c
+C:\Temp\mosquitto-1.4.15\client\client_shared.c(959): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  pub_client.c
+  코드를 생성하고 있습니다...
+  mosquitto_pub.vcxproj -> C:\Temp\mosquitto-1.4.15\build\client\Debug\mosquitto_pub.exe

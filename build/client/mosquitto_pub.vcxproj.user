@@ -1,8 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>-t 안녕 -l -q 2</LocalDebuggerCommandArguments>
+    <LocalDebuggerEnvironment>PATH=C:\pthreads\Pre-built.2\dll\x86;C:\pthreads\Pre-built.2\lib\x86;C:\Temp\libwebsockets-2.4.1\build\bin\Release;C:\Temp\mosquitto-1.4.15\build\lib\Debug; $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=C:\TEMP\mosquitto-1.4.15\build\lib\Debug;C:\pthreads\Pre-built.2\dll\x86;</LocalDebuggerEnvironment>
+    <LocalDebuggerCommandArguments>-t "a/b" -m "sdf"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <LocalDebuggerEnvironment>PATH=C:\pthreads\Pre-built.2\dll\x86;C:\pthreads\Pre-built.2\lib\x86;C:\Temp\libwebsockets-2.4.1\build\bin\Release;C:\Temp\mosquitto-1.4.15\build\lib\Debug; $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-t "a/b" -m "sdf"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerEnvironment>PATH=C:\pthreads\Pre-built.2\dll\x86;C:\pthreads\Pre-built.2\lib\x86;C:\Temp\libwebsockets-2.4.1\build\bin\Release;C:\Temp\mosquitto-1.4.15\build\lib\Debug; $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-t "a/b" -m "sdf"</LocalDebuggerCommandArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <LocalDebuggerEnvironment>PATH=C:\pthreads\Pre-built.2\dll\x86;C:\pthreads\Pre-built.2\lib\x86;C:\Temp\libwebsockets-2.4.1\build\bin\Release;C:\Temp\mosquitto-1.4.15\build\lib\Debug; $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-t "a/b" -m "sdf"</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
