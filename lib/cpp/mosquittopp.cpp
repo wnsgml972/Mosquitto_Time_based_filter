@@ -216,7 +216,7 @@ void mosquittopp::message_retry_set(unsigned int message_retry)
 
 int mosquittopp::subscribe(int *mid, const char *sub, int qos)
 {
-	return mosquitto_subscribe(m_mosq, mid, sub, qos);
+	return mosquitto_subscribe(m_mosq, mid, sub, qos, 0);
 }
 
 int mosquittopp::unsubscribe(int *mid, const char *sub)

@@ -619,7 +619,7 @@ libmosq_EXPORT int mosquitto_publish(struct mosquitto *mosq, int *mid, const cha
  * 	MOSQ_ERR_NOMEM -   if an out of memory condition occurred.
  * 	MOSQ_ERR_NO_CONN - if the client isn't connected to a broker.
  */
-libmosq_EXPORT int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos);
+libmosq_EXPORT int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int qos, short tf);
 
 /*
  * Function: mosquitto_unsubscribe
