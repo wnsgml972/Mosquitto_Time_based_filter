@@ -631,7 +631,7 @@ int mosquitto_subscribe(struct mosquitto *mosq, int *mid, const char *sub, int q
 	if(mosq->sock == INVALID_SOCKET) return MOSQ_ERR_NO_CONN;
 
 	if(mosquitto_sub_topic_check(sub)) return MOSQ_ERR_INVAL;
-
+	//printf("%d!!!\n",tf);
 	return _mosquitto_send_subscribe(mosq, mid, sub, qos, tf);
 }
 

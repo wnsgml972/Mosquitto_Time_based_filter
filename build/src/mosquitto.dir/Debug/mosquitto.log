@@ -1,6 +1,0 @@
-﻿  net_mosq.c
-C:\Temp\libwebsockets-2.4.1\lib\libwebsockets.h(76): warning C4005: 'strcasecmp': 매크로 재정의
-  C:\Temp\mosquitto-1.4.15\config.h(21): note: 'strcasecmp'의 이전 정의를 참조하십시오.
-C:\Temp\mosquitto-1.4.15\lib\net_mosq.h(23): warning C4142: 'SSIZE_T': 형식이 재정의되었지만 심각하지는 않습니다.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\shared\basetsd.h(421): note: 'SSIZE_T' 선언을 참조하십시오.
-  mosquitto.vcxproj -> C:\Temp\mosquitto-1.4.15\build\src\Debug\mosquitto.exe

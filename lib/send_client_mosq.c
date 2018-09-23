@@ -186,12 +186,12 @@ int _mosquitto_send_subscribe(struct mosquitto *mosq, int *mid, const char *topi
 	if(mid) *mid = (int)local_mid;
 	_mosquitto_write_uint16(packet, local_mid);
 
-	printf("쓰기 전.\n");
+	//printf("쓰기 전.\n");
 	/* Payload */
 	_mosquitto_write_string(packet, topic, strlen(topic));
 	_mosquitto_write_byte(packet, topic_qos);
 	_mosquitto_write_short(packet, tf);
-	printf("일단 썼다.\n");
+	//printf("일단 썼다.\n");
 #ifdef WITH_BROKER
 # ifdef WITH_BRIDGE
 	_mosquitto_log_printf(mosq, MOSQ_LOG_DEBUG, "Bridge %s sending SUBSCRIBE (Mid: %d, Topic: %s, QoS: %d)", mosq->id, local_mid, topic, topic_qos);

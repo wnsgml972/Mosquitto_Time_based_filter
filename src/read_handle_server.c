@@ -682,7 +682,7 @@ int mqtt3_handle_subscribe(struct mosquitto_db *db, struct mosquitto *context)
 				if (payload) _mosquitto_free(payload);
 				return 1;
 			}
-
+			printf("%d %d !!!\n",qos, tf);
 			if(qos > 2){
 				_mosquitto_log_printf(NULL, MOSQ_LOG_INFO, "Invalid QoS in subscription command from %s, disconnecting.",
 					context->address);

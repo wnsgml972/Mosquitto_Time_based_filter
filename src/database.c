@@ -850,6 +850,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 			payload = tail->store->payload;
 			switch(tail->state){
 				case mosq_ms_publish_qos0:
+					printf("qos 0!\n");
 					rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
 					if(!rc){
 						_message_remove(db, context, &tail, last);
@@ -859,6 +860,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 					break;
 
 				case mosq_ms_publish_qos1:
+					printf("qos 1!\n");
 					rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
 					if(!rc){
 						tail->timestamp = mosquitto_time();
@@ -872,6 +874,7 @@ int mqtt3_db_message_write(struct mosquitto_db *db, struct mosquitto *context)
 					break;
 
 				case mosq_ms_publish_qos2:
+					printf("qos 2!\n");
 					rc = _mosquitto_send_publish(context, mid, topic, payloadlen, payload, qos, retain, retries);
 					if(!rc){
 						tail->timestamp = mosquitto_time();
